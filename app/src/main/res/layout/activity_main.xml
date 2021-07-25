@@ -4,23 +4,148 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:visibility="visible"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/textView"
+        android:layout_width="208dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:text="TOKIC 스피킹"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_logout"
+
+    <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        tools:layout_editor_absoluteX="249dp"
-        tools:layout_editor_absoluteY="35dp" />
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <HorizontalScrollView
+            android:id="@+id/ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="horizontal">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_result"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:enabled="true"
+                    android:text="공통진단"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_P1"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="P1"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_P2"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="P2"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_P3"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="P3"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_P4"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="P4"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_P5"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="P5"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_P6"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="P6"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_levelup"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:text="LEVEL UP"
+                    android:textColor="@color/black"
+                    app:chipBackgroundColor="@drawable/part_selection"
+                    app:showAsAction="always" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+    </TableLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

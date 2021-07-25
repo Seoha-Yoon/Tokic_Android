@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+        <TableLayout
+            android:layout_width="85dp"
+            android:layout_height="276dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="3dp">
+
+                <ImageButton
+                    android:id="@+id/btn_play1"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+
+                    android:background="@drawable/play_button" />
+
+                <ImageButton
+                    android:id="@+id/btn_play2"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/play_button" />
+
+                <ImageButton
+                    android:id="@+id/btn_play3"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/play_button" />
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="310dp"
+            android:layout_height="283dp">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical"
+                    android:text="단어 빈칸 채우기"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical"
+                    android:text="문장 순서대로 배열하기"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical"
+                    android:text="확인 테스트"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+
+        </TableLayout>
+</LinearLayout>

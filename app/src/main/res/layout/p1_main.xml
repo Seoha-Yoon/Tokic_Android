@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:id="@+id/Scroll_P1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="234dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/part_image"
+                tools:layout_editor_absoluteY="1062dp" />
+
+            <TextView
+                android:id="@+id/textView_P1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Part 1. 질문에 대답하기"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/black"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="취미가 뭐에요?"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/textView_P1_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_thin"
+                android:text="일상생활에서 자주 만나게 되는 상황에서 간단한 질문을 듣고 적절하게 대답하는 초급 문제입니다."
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/textView_P1_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Course"
+                android:textSize="22dp"
+                android:textColor="@color/black"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/btn_goto_module"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:clickable="true"
+                    android:enabled="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="학습선택"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/btn_goto_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:clickable="true"
+                    android:enabled="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="공부방법"
+                    android:textColor="@color/black"
+                    app:backgroundTint="#FFFFFF" />
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:id="@+id/frame_P1"
+                android:layout_width="match_parent"
+                android:layout_height="530dp">
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
