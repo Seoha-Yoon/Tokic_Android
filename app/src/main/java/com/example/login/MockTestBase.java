@@ -23,7 +23,7 @@ public class MockTestBase extends AppCompatActivity {
 
     // countdown
     TextView textViewCountDown;
-    private static final long COUNTDOWN_IN_MILLIS = 10000;
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
     private long timeLeftInMillis;
     CountDownTimer countDownTimer;
 
