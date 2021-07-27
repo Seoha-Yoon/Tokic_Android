@@ -1,6 +1,7 @@
 package com.example.login;
 
 import android.content.Intent;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -38,6 +39,10 @@ public class MockTestBase extends AppCompatActivity {
 
     private Fragment[] fragments = {fragmentPart1, fragmentPart2, fragmentPart3, fragmentPart4, fragmentPart5, fragmentPart6};
     private int num = 0;
+
+    // voice recording
+    MediaRecorder recorder;
+    String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
