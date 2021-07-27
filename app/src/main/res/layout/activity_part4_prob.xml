@@ -104,7 +104,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
     <ImageButton
-        android:id="@+id/sttStart"
+        android:id="@+id/record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -121,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="음성인식 결과"
-        app:layout_constraintBottom_toTopOf="@+id/sttStart"
+        app:layout_constraintBottom_toTopOf="@+id/record"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

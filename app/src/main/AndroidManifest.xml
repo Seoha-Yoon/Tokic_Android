@@ -3,7 +3,11 @@
     package="com.example.login">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    // 녹음 권환, 녹음 파일 저장/읽기 권한
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
