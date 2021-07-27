@@ -23,32 +23,29 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:textColor="@color/black"
-        android:text="한 문장씩 따라 읽으며 발음을 연습하세요." />
+        android:text="한 문장씩 따라 읽으며 발음을 연습한 뒤,\n빈칸을 채워넣은 문장을 녹음하여 제출하세요" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center">
 
         <Button
             android:id="@+id/btn_answer"
             android:layout_width="150dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
             android:text="전체 문장 보기" />
 
         <Button
             android:id="@+id/btn_blank"
             android:layout_width="150dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
             android:text="빈칸 만들기" />
 
     </LinearLayout>
