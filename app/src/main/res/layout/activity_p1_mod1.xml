@@ -9,15 +9,33 @@
     android:layout_marginRight="10dp"
     tools:context=".P1_mod_1">
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:text="단어 빈칸 채우기" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/back"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="단어 빈칸 채우기" />
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/textView18"
@@ -56,6 +74,7 @@
         android:id="@+id/frame_fillblank"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        />
 
     </FrameLayout>
 </LinearLayout>

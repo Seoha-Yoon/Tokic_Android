@@ -3,15 +3,19 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
 
 public class P1_main extends AppCompatActivity {
     ScrollView scroll;
     Button btn_module, btn_intro;
+    ImageButton btn_back;
 
 
     @Override
@@ -22,6 +26,7 @@ public class P1_main extends AppCompatActivity {
 
         btn_module=findViewById(R.id.btn_goto_module);
         btn_intro=findViewById(R.id.btn_goto_intro);
+        btn_back=findViewById(R.id.btn_back);
 
         btn_module.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +55,14 @@ public class P1_main extends AppCompatActivity {
                 transaction.commit();
 
 
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(P1_main.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

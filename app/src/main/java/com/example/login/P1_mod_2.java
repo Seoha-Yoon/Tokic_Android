@@ -2,9 +2,12 @@ package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,11 +20,24 @@ public class P1_mod_2 extends AppCompatActivity {
 
     Button sen1,sen2,sen3;
     String txt1,txt2,txt3;
-    LinearLayout box;
+
+    ImageButton btn_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p1_mod2);
+
+        btn_back=findViewById(R.id.btn_back);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(P1_mod_2.this, P1_main.class);
+                startActivity(intent);
+            }
+        });
+
 
         ArrayList<String> l = new ArrayList<>();
 
