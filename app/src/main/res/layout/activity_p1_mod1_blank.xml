@@ -14,14 +14,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-    <TextView
-        android:id="@+id/textView38"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="제 취미는 영화 보기예요."
-        android:layout_marginTop="15dp"
-        android:textSize="25dp"
-        android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/blank1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
             <ImageButton
                 android:id="@+id/stt1"
@@ -32,16 +33,18 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-    <TextView
-        android:id="@+id/textView39"
+
+            <TextView
+        android:id="@+id/blank2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="저는 시간 있을 때 영화관에 가요."
+
         android:layout_marginTop="15dp"
         android:textSize="25dp"
         android:textColor="@color/black"/>
 
-    <ImageButton
+
+            <ImageButton
         android:id="@+id/stt2"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -50,16 +53,19 @@
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-    <TextView
-        android:id="@+id/textView40"
+
+            <TextView
+        android:id="@+id/blank3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="집에서도 영화를 자주 봐요"
+
         android:layout_marginTop="15dp"
         android:textSize="25dp"
         android:textColor="@color/black"/>
 
-    <ImageButton
+
+
+            <ImageButton
         android:id="@+id/stt3"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -68,16 +74,19 @@
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-    <TextView
-        android:id="@+id/textView41"
+
+
+            <TextView
+        android:id="@+id/blank4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="저는 재미있는 영화를 좋아해요."
+
         android:layout_marginTop="15dp"
         android:textSize="25dp"
         android:textColor="@color/black"/>
 
-    <ImageButton
+
+            <ImageButton
         android:id="@+id/stt4"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -86,16 +95,18 @@
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-    <TextView
-        android:id="@+id/textView42"
+
+            <TextView
+        android:id="@+id/blank5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="슬픈 영화도 잘 봐요."
+
         android:textSize="25dp"
         android:textColor="@color/black"/>
 
-    <ImageButton
+
+            <ImageButton
         android:id="@+id/stt5"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -104,16 +115,18 @@
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-    <TextView
-        android:id="@+id/textView43"
+
+            <TextView
+        android:id="@+id/blank6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="저는 이번 주말에 친구와 함께 영화관에 갈 거예요."
+
         android:textSize="25dp"
         android:textColor="@color/black"/>
 
-    <ImageButton
+
+            <ImageButton
         android:id="@+id/stt6"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -121,6 +134,8 @@
         android:scaleType="fitCenter"
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+
+
         </LinearLayout>
     </ScrollView>
 
