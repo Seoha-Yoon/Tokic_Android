@@ -23,7 +23,7 @@ public class MockTestActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MockTestActivity.this, MockTestBase.class);
+                Intent intent = new Intent(MockTestActivity.this, Part1Prob.class);
                 startActivity(intent);
             }
         });
