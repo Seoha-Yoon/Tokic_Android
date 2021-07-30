@@ -69,7 +69,7 @@ public class Part4Prob extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_part1_prob);
+        setContentView(R.layout.activity_part4_prob);
 
         // initialize DB
         mTestDBHelper = new TestDBHelper(Part4Prob.this);
@@ -120,6 +120,7 @@ public class Part4Prob extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                countDownTimer.cancel();
                 Intent intent = new Intent(Part4Prob.this, Part5Prob.class);
                 startActivity(intent);
             }
@@ -191,6 +192,9 @@ public class Part4Prob extends AppCompatActivity {
             public void onFinish() {
                 timeLeftInMillis = 0;
                 updateCountDownText();
+                Toast.makeText(Part4Prob.this, "Time Over", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Part4Prob.this, Part5Prob.class);
+                startActivity(intent);
                 finish();
             }
         }.start();
