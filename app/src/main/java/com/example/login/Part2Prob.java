@@ -120,6 +120,7 @@ public class Part2Prob extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                countDownTimer.cancel();
                 Intent intent = new Intent(Part2Prob.this, Part3Prob.class);
                 startActivity(intent);
             }
@@ -191,6 +192,9 @@ public class Part2Prob extends AppCompatActivity {
             public void onFinish() {
                 timeLeftInMillis = 0;
                 updateCountDownText();
+                Toast.makeText(Part2Prob.this, "Time Over", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Part2Prob.this, Part3Prob.class);
+                startActivity(intent);
                 finish();
             }
         }.start();

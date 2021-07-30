@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -125,8 +127,10 @@ public class Part1Prob extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                countDownTimer.cancel();
                 Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -167,7 +171,6 @@ public class Part1Prob extends AppCompatActivity {
     public void playAudio(){
         try {
             closePlayer();
-
             player = new MediaPlayer();
             player.setDataSource(outputFile);
             player.prepare();
@@ -197,9 +200,13 @@ public class Part1Prob extends AppCompatActivity {
                 timeLeftInMillis = 0;
                 updateCountDownText();
                 finish();
+                Toast.makeText(Part1Prob.this, "Time Over", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
+                startActivity(intent);
             }
         }.start();
     }
+
 
     private void updateCountDownText(){
         int minutes = (int) (timeLeftInMillis / 1000) / 60;

@@ -69,7 +69,7 @@ public class Part5Prob extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_part1_prob);
+        setContentView(R.layout.activity_part5_prob);
 
         // initialize DB
         mTestDBHelper = new TestDBHelper(Part5Prob.this);
@@ -191,6 +191,9 @@ public class Part5Prob extends AppCompatActivity {
             public void onFinish() {
                 timeLeftInMillis = 0;
                 updateCountDownText();
+                Toast.makeText(Part5Prob.this, "Time Over", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Part5Prob.this, Part6Prob.class);
+                startActivity(intent);
                 finish();
             }
         }.start();
