@@ -1,34 +1,29 @@
 package com.example.login;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Locale;
 
-public class Part1Prob extends AppCompatActivity {
+public class Part3Prob extends AppCompatActivity {
 
     // voice recording
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
@@ -59,12 +54,12 @@ public class Part1Prob extends AppCompatActivity {
             case REQUEST_RECORD_AUDIO_PERMISSION:
                 if(grantResults.length>0) {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        Toast.makeText(Part1Prob.this, "Audio 권한을 사용자가 승인함.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Part3Prob.this, "Audio 권한을 사용자가 승인함.", Toast.LENGTH_LONG).show();
                     } else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                        Toast.makeText(Part1Prob.this, "Audio 권한을 사용자가 거부함.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Part3Prob.this, "Audio 권한을 사용자가 거부함.", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(Part1Prob.this,"Audio 권한을 부여받지 못", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Part3Prob.this,"Audio 권한을 부여받지 못", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -77,18 +72,18 @@ public class Part1Prob extends AppCompatActivity {
         setContentView(R.layout.activity_part1_prob);
 
         // initialize DB
-        mTestDBHelper = new TestDBHelper(Part1Prob.this);
+        mTestDBHelper = new TestDBHelper(Part3Prob.this);
 
-        int permissionCheck = ContextCompat.checkSelfPermission(Part1Prob.this, Manifest.permission.RECORD_AUDIO);
+        int permissionCheck = ContextCompat.checkSelfPermission(Part3Prob.this, Manifest.permission.RECORD_AUDIO);
 
         if(permissionCheck == PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(Part1Prob.this,"Audio 권한 있음.", Toast.LENGTH_LONG).show();
+            Toast.makeText(Part3Prob.this,"Audio 권한 있음.", Toast.LENGTH_LONG).show();
         }else {
-            Toast.makeText(Part1Prob.this, "Audio 권한 없음.", Toast.LENGTH_LONG).show();
-            if (ActivityCompat.shouldShowRequestPermissionRationale(Part1Prob.this, Manifest.permission.RECORD_AUDIO)) {
-                Toast.makeText(Part1Prob.this, "Audio 권한 설명 필요함.", Toast.LENGTH_LONG).show();
+            Toast.makeText(Part3Prob.this, "Audio 권한 없음.", Toast.LENGTH_LONG).show();
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Part3Prob.this, Manifest.permission.RECORD_AUDIO)) {
+                Toast.makeText(Part3Prob.this, "Audio 권한 설명 필요함.", Toast.LENGTH_LONG).show();
             } else {
-                ActivityCompat.requestPermissions(Part1Prob.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
+                ActivityCompat.requestPermissions(Part3Prob.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
             }
         }
 
@@ -118,14 +113,14 @@ public class Part1Prob extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playAudio();
-                Toast.makeText(Part1Prob.this,"재생 시작", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Part3Prob.this,"재생 시작", Toast.LENGTH_SHORT).show();
             }
         });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
+                Intent intent = new Intent(Part3Prob.this, Part4Prob.class);
                 startActivity(intent);
             }
         });
@@ -146,7 +141,7 @@ public class Part1Prob extends AppCompatActivity {
         try{
             recorder.prepare();
 
-            Toast.makeText(Part1Prob.this,"녹음 시작", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Part3Prob.this,"녹음 시작", Toast.LENGTH_SHORT).show();
 
         }catch (IOException e){
             e.printStackTrace();
@@ -160,7 +155,7 @@ public class Part1Prob extends AppCompatActivity {
             recorder.release();
             recorder = null;
 
-            Toast.makeText(Part1Prob.this,"녹음 중지", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Part3Prob.this,"녹음 중지", Toast.LENGTH_SHORT).show();
         }
     }
 
