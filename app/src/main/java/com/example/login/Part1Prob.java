@@ -46,7 +46,7 @@ public class Part1Prob extends AppCompatActivity {
 
     // countdown
     TextView textViewCountDown;
-    private static final long COUNTDOWN_IN_MILLIS = 10000;
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
     private long timeLeftInMillis;
     CountDownTimer countDownTimer;
 
@@ -135,6 +135,7 @@ public class Part1Prob extends AppCompatActivity {
         });
 
         // for Countdown
+        Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
         textViewCountDown = findViewById(R.id.tv_countdown);
         timeLeftInMillis = COUNTDOWN_IN_MILLIS;
         startCountDown();
@@ -200,7 +201,8 @@ public class Part1Prob extends AppCompatActivity {
                 timeLeftInMillis = 0;
                 updateCountDownText();
                 finish();
-                Toast.makeText(Part1Prob.this, "Time Over", Toast.LENGTH_LONG).show();
+                Toast.makeText(Part1Prob.this, "응답시간이 초과했습니다.", Toast.LENGTH_SHORT).show();
+                stopRecording();
                 Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
                 startActivity(intent);
             }
@@ -215,6 +217,12 @@ public class Part1Prob extends AppCompatActivity {
         String timeFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes,seconds);
 
         textViewCountDown.setText(timeFormatted);
+
+        // Start Audio Recording
+        if(seconds == 20) {
+            Toast.makeText(Part1Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
+            recordAudio();
+        }
     }
 
 

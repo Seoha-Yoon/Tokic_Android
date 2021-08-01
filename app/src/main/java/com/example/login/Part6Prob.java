@@ -39,7 +39,7 @@ public class Part6Prob extends AppCompatActivity {
 
     // countdown
     TextView textViewCountDown;
-    private static final long COUNTDOWN_IN_MILLIS = 10000;
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
     private long timeLeftInMillis;
     CountDownTimer countDownTimer;
 
@@ -193,6 +193,7 @@ public class Part6Prob extends AppCompatActivity {
                 timeLeftInMillis = 0;
                 updateCountDownText();
                 Toast.makeText(Part6Prob.this, "Time Over", Toast.LENGTH_LONG).show();
+                stopRecording();
                 Intent intent = new Intent(Part6Prob.this, Part6Prob.class);
                 startActivity(intent);
                 finish();
@@ -207,6 +208,12 @@ public class Part6Prob extends AppCompatActivity {
         String timeFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes,seconds);
 
         textViewCountDown.setText(timeFormatted);
+
+        // Start Audio Recording
+        if(seconds == 20) {
+            Toast.makeText(Part6Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
+            recordAudio();
+        }
     }
 
 
