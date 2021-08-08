@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.HashSet;
+
 public class P1_mod_1_answer extends Fragment {
 
     public static P1_mod_1_answer newInstance(){
         return new P1_mod_1_answer();
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
