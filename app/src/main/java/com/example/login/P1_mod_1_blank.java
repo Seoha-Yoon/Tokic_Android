@@ -250,11 +250,24 @@ public class P1_mod_1_blank extends Fragment {
 //                Log.d("MyApp",matches.get(i));
 
             SpannableStringBuilder builder = new SpannableStringBuilder();
-            for(int i=0; i<matches.get(0).length() && i<ans.length(); i++) {
+            for(int i=0, j=0; i<matches.get(0).length() && j<ans.length(); i++, j++) {
+
+                // check blank or not
+                if(ans.charAt(j)==' '){
+                    SpannableString str = new SpannableString(" ");
+                    str.setSpan(new ForegroundColorSpan(Color.BLACK), 0, str.length(), 0);
+                    builder.append(str);
+                    i--;
+                    continue;
+                }
+
+                if(matches.get(0).charAt(i)==' ') i++;
+                // check out of bound or not
+                if(j>=ans.length() || i>=matches.get(0).length()) break;
 
                 SpannableString str = new SpannableString(Character.toString(matches.get(0).charAt(i)));
 
-                if(ans.charAt(i) == matches.get(0).charAt(i)){
+                if(ans.charAt(j) == matches.get(0).charAt(i)){
                     str.setSpan(new ForegroundColorSpan(Color.BLACK), 0, str.length(), 0);
                 }
                 else {
