@@ -7,26 +7,48 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Parameter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -53,6 +75,13 @@ public class Part1Prob extends AppCompatActivity {
     // DB
     private TestDBHelper mTestDBHelper;
 
+    // upload video
+    private StorageReference mStorage;
+    private String mFileName = null;
+    private ProgressDialog mProgress;
+    private TextView tvMainText;
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -77,6 +106,10 @@ public class Part1Prob extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
+
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mProgress = new ProgressDialog(this);
+
 
         // initialize DB
         mTestDBHelper = new TestDBHelper(Part1Prob.this);
@@ -166,7 +199,27 @@ public class Part1Prob extends AppCompatActivity {
             recorder = null;
 
             Toast.makeText(Part1Prob.this,"녹음 중지", Toast.LENGTH_SHORT).show();
+
+            uploadAudio();
         }
+    }
+
+    public void uploadAudio(){
+
+        mProgress.setMessage("Uploading Audio...");
+        mProgress.show();
+
+        StorageReference filepath = mStorage.child("Audio").child("new_audio.3gp");
+
+        Uri uri = Uri.fromFile(new File(mFileName));
+        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                mProgress.dismiss();
+                tvMainText.setText("Uploading Finished");
+            }
+        });
+
     }
 
     public void playAudio(){
