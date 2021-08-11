@@ -45,7 +45,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation 'com.google.firebase:firebase-storage:19.2.0'
-
     implementation 'com.google.firebase:firebase-analytics:17.2.3'
     implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'com.google.firebase:firebase-database:20.0.1'
@@ -54,6 +53,7 @@ dependencies {
     // Declare the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.firebase:firebase-client-android:2.4.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

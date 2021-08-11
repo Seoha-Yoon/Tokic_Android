@@ -29,8 +29,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,6 +55,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import static android.content.ContentValues.TAG;
 
 public class Part1Prob extends AppCompatActivity {
 
@@ -76,11 +82,24 @@ public class Part1Prob extends AppCompatActivity {
     private TestDBHelper mTestDBHelper;
 
     // upload video
+    private FirebaseAuth mAuth;
+    private FirebaseStorage storage;
     private StorageReference mStorage;
-    private String mFileName = null;
+//    private String mFileName = null;
     private ProgressDialog mProgress;
     private TextView tvMainText;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            // do your stuff
+        } else {
+            signInAnonymously();
+            System.out.println("anonymous");
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
@@ -106,6 +125,9 @@ public class Part1Prob extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
+
+//        storage = FirebaseStorage.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgress = new ProgressDialog(this);
@@ -145,7 +167,17 @@ public class Part1Prob extends AppCompatActivity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                System.out.println(user);
                 stopRecording();
+
+//                if (user != null) {
+//                    // do your stuff
+//                    stopRecording();
+//                } else {
+//                    signInAnonymously();
+//                }
+
             }
         });
 
@@ -174,10 +206,26 @@ public class Part1Prob extends AppCompatActivity {
         startCountDown();
     }
 
+    private void signInAnonymously() {
+        mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                // do your stuff
+                System.out.println("Firebase SignIn Success");
+            }
+        })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e(TAG, "signInAnonymously:FAILURE", exception);
+                    }
+                });
+    }
+
     public void recordAudio(){
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         recorder.setOutputFile(outputFile);
 
@@ -211,7 +259,7 @@ public class Part1Prob extends AppCompatActivity {
 
         StorageReference filepath = mStorage.child("Audio").child("new_audio.3gp");
 
-        Uri uri = Uri.fromFile(new File(mFileName));
+        Uri uri = Uri.fromFile(new File(outputFile));
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
