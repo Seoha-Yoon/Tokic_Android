@@ -25,6 +25,10 @@ import java.util.Locale;
 
 public class Part2Prob extends AppCompatActivity {
 
+    @Override
+    public void onBackPressed() {
+    }
+
     // voice recording
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private MediaRecorder recorder;
@@ -123,6 +127,7 @@ public class Part2Prob extends AppCompatActivity {
                 countDownTimer.cancel();
                 Intent intent = new Intent(Part2Prob.this, Part3Prob.class);
                 startActivity(intent);
+                finish();
             }
         });
 

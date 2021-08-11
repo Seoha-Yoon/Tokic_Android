@@ -54,6 +54,10 @@ import java.util.Locale;
 
 public class Part1Prob extends AppCompatActivity {
 
+    @Override
+    public void onBackPressed() {
+    }
+
     // voice recording
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private MediaRecorder recorder;
