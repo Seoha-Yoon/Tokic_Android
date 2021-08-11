@@ -30,6 +30,7 @@
         <activity android:name=".Part4Prob"/>
         <activity android:name=".Part5Prob"/>
         <activity android:name=".Part6Prob"/>
+        <activity android:name=".TestResultActivity"/>
         <activity android:name=".P1_main" />
         <activity
             android:name=".MockTestActivity"
