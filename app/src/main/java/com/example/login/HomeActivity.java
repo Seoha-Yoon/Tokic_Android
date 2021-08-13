@@ -76,32 +76,32 @@ public class HomeActivity extends AppCompatActivity {
         // flask 통신
         OkHttpClient okHttpClient = new OkHttpClient();
 
-        // POST TEST
-        RequestBody formbody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("key","value")
-                .addFormDataPart("key2", "value")
-                .build();
-
-        Request req = new Request.Builder()
-                .url(BASE_URL + "post")
-                .post(formbody)
-                .build();
-
-        okHttpClient.newCall(req).enqueue(new Callback() {
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                System.out.println(response.body().string());
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                System.out.println("fail");
-
-            }
-
-        });
+//        // POST TEST
+//        RequestBody formbody = new MultipartBody.Builder()
+//                .setType(MultipartBody.FORM)
+//                .addFormDataPart("key","value")
+//                .addFormDataPart("key2", "value")
+//                .build();
+//
+//        Request req = new Request.Builder()
+//                .url(BASE_URL + "post")
+//                .post(formbody)
+//                .build();
+//
+//        okHttpClient.newCall(req).enqueue(new Callback() {
+//
+//            @Override
+//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                System.out.println(response.body().string());
+//            }
+//
+//            @Override
+//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                System.out.println("fail");
+//
+//            }
+//
+//        });
 
         // GET TEST
         Request request = new Request.Builder().url("http://18.118.47.176:5000/one").build();

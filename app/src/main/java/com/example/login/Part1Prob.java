@@ -60,11 +60,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 import static android.content.ContentValues.TAG;
 
 public class Part1Prob extends AppCompatActivity {
 
     private String LOG_TAG = "Record_log";
+    private static final Object BASE_URL = "http://18.118.47.176:5000/";
 
     @Override
     public void onBackPressed() {
@@ -179,6 +188,36 @@ public class Part1Prob extends AppCompatActivity {
         outputFile += "_test_part1_";
         outputFile += idByANDROID_ID;
         outputFile += ".3gp";
+
+
+        // flask 통신
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        // POST TEST
+        RequestBody formbody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("android_id",idByANDROID_ID)
+                .addFormDataPart("url", outputFile)
+                .build();
+
+        Request req = new Request.Builder()
+                .url(BASE_URL + "post")
+                .post(formbody)
+                .build();
+
+        okHttpClient.newCall(req).enqueue(new Callback() {
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                System.out.println(response.body().string());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                System.out.println("fail");
+            }
+        });
+
 
         System.out.println("==================="+outputFile+"=====================");
 
