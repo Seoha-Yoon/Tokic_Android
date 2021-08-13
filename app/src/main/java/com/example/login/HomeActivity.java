@@ -38,6 +38,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -45,6 +46,7 @@ import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private static final Object BASE_URL = "http://18.118.47.176:5000/";
     Button btn_test, btn_part;
 
 
@@ -75,7 +77,31 @@ public class HomeActivity extends AppCompatActivity {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         // POST TEST
-//        RequestBody formbody = new FormBody().
+        RequestBody formbody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("key","value")
+                .addFormDataPart("key2", "value")
+                .build();
+
+        Request req = new Request.Builder()
+                .url(BASE_URL + "post")
+                .post(formbody)
+                .build();
+
+        okHttpClient.newCall(req).enqueue(new Callback() {
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                System.out.println(response.body().string());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                System.out.println("fail");
+
+            }
+
+        });
 
         // GET TEST
         Request request = new Request.Builder().url("http://18.118.47.176:5000/one").build();
@@ -86,14 +112,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 TextView textView = findViewById(R.id.textview);
-//                textView.setText(response.body().string());
                 System.out.println(response.body().string());
             }
 
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 TextView textView = findViewById(R.id.textview);
-//                textView.setText("fail");
                 System.out.println("fail");
 
             }
