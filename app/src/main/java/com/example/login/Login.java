@@ -70,6 +70,7 @@ public class Login extends AppCompatActivity {
                     }
                     else {
                         updateUI(null);
+                        System.out.println("================="+"익명 로그인 실패"+"===================");
                     }
                 }
             });

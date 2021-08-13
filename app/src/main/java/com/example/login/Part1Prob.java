@@ -16,8 +16,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -53,12 +55,16 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Parameter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
 public class Part1Prob extends AppCompatActivity {
+
+    private String LOG_TAG = "Record_log";
 
     @Override
     public void onBackPressed() {
@@ -89,7 +95,6 @@ public class Part1Prob extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
     private StorageReference mStorage;
-//    private String mFileName = null;
     private ProgressDialog mProgress;
     private TextView tvMainText;
 
@@ -97,12 +102,13 @@ public class Part1Prob extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            // do your stuff
-        } else {
-            signInAnonymously();
-            System.out.println("anonymous");
-        }
+
+        System.out.println("====================="+user+"======================");
+//        if (user != null) {
+//            // do your stuff
+//        } else {
+//            signInAnonymously();
+//        }
     }
 
     @Override
@@ -130,7 +136,6 @@ public class Part1Prob extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
 
-//        storage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -158,29 +163,38 @@ public class Part1Prob extends AppCompatActivity {
         play = (Button)findViewById(R.id.play);
         next = (Button)findViewById(R.id.btn_next);
 
-        outputFile = getExternalCacheDir().getAbsolutePath();
-        outputFile += "/audiorecordtest.3gp";
+
+        // 안드로이드폰 ID
+        String idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        // 현재 날짜
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("/yyyyMMdd_hhmmss");
+        String getTime = simpleDate.format(mDate);
+
+//        outputFile = getExternalCacheDir().getAbsolutePath();
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath();   // 내부저장소에 저장되는 경로
+        outputFile += getTime;
+        outputFile += "_test_part1_";
+        outputFile += idByANDROID_ID;
+        outputFile += ".3gp";
+
+        System.out.println("==================="+outputFile+"=====================");
 
         record.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 recordAudio();
+                Toast.makeText(Part1Prob.this,"Recording started...", Toast.LENGTH_SHORT).show();
             }
         });
 
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                System.out.println(user);
                 stopRecording();
-
-//                if (user != null) {
-//                    // do your stuff
-//                    stopRecording();
-//                } else {
-//                    signInAnonymously();
-//                }
+                Toast.makeText(Part1Prob.this,"Recording stopped...", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -196,7 +210,7 @@ public class Part1Prob extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countDownTimer.cancel();
+//                countDownTimer.cancel();
                 Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
                 startActivity(intent);
                 finish();
@@ -204,10 +218,10 @@ public class Part1Prob extends AppCompatActivity {
         });
 
         // for Countdown
-        Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
-        textViewCountDown = findViewById(R.id.tv_countdown);
-        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
-        startCountDown();
+//        Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
+//        textViewCountDown = findViewById(R.id.tv_countdown);
+//        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+//        startCountDown();
     }
 
     private void signInAnonymously() {
@@ -239,6 +253,8 @@ public class Part1Prob extends AppCompatActivity {
             Toast.makeText(Part1Prob.this,"녹음 시작", Toast.LENGTH_SHORT).show();
 
         }catch (IOException e){
+
+            Log.e(LOG_TAG,"prepare() failed");
             e.printStackTrace();
         }
         recorder.start();
@@ -250,9 +266,7 @@ public class Part1Prob extends AppCompatActivity {
             recorder.release();
             recorder = null;
 
-            Toast.makeText(Part1Prob.this,"녹음 중지", Toast.LENGTH_SHORT).show();
-
-            uploadAudio();
+//            uploadAudio();
         }
     }
 
@@ -269,6 +283,8 @@ public class Part1Prob extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mProgress.dismiss();
                 tvMainText.setText("Uploading Finished");
+
+                Toast.makeText(Part1Prob.this,"Uploading Finished", Toast.LENGTH_SHORT).show();
             }
         });
 

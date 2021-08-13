@@ -36,6 +36,7 @@ import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -65,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 나은
+        // 안드로이드폰 고유 ID
         String idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         Toast.makeText(HomeActivity.this, idByANDROID_ID, Toast.LENGTH_SHORT).show();
 
@@ -73,6 +74,10 @@ public class HomeActivity extends AppCompatActivity {
         // flask 통신
         OkHttpClient okHttpClient = new OkHttpClient();
 
+        // POST TEST
+//        RequestBody formbody = new FormBody().
+
+        // GET TEST
         Request request = new Request.Builder().url("http://18.118.47.176:5000/one").build();
 
 
@@ -81,12 +86,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 TextView textView = findViewById(R.id.textview);
+//                textView.setText(response.body().string());
                 System.out.println(response.body().string());
             }
 
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 TextView textView = findViewById(R.id.textview);
+//                textView.setText("fail");
                 System.out.println("fail");
 
             }
