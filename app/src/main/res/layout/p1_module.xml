@@ -9,7 +9,7 @@
 
         <TableLayout
             android:layout_width="66dp"
-            android:layout_height="269dp"
+            android:layout_height="240dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp">
@@ -24,20 +24,20 @@
                     android:id="@+id/btn_play2"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="14dp"
                     android:background="@drawable/play_button" />
 
                 <ImageButton
                     android:id="@+id/btn_play3"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="14dp"
                     android:background="@drawable/play_button" />
         </TableLayout>
 
         <TableLayout
             android:layout_width="310dp"
-            android:layout_height="283dp">
+            android:layout_height="240dp">
 
                 <TextView
                     android:id="@+id/textView15"

@@ -10,64 +10,69 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:fontFamily="@font/roboto_thin"
-        android:text="자기 자신이나 가족, 가까운 친구나 사람, 사물, 단순한 계획과 경험 등을 이야기하는 데 필요한 기초 단어와 표현들을 미리 공부하면 좋습니다.\n기초적인 소재에 대해 여러 문장으로 말하는 연습을 하면 도움이 됩니다. \n답변 시간을 최대한 활용하고, 정확한 발음과 자연스러운 억양, 적절한 속도로 말하는 연습을 하면 좋습니다." />
+        android:text="자기 자신이나 가족, 가까운 친구나 사람, 사물, 단순한 계획과 경험 등을 이야기하는 데 필요한 기초 단어와 표현들을 미리 공부하면 좋습니다.기초적인 소재에 대해 여러 문장으로 말하는 연습을 하면 도움이 됩니다. \n답변 시간을 최대한 활용하고, 정확한 발음과 자연스러운 억양, 적절한 속도로 말하는 연습을 하면 좋습니다."
+        android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        android:fontFamily="@font/roboto_thin"
-        android:text="짧은 질문을 듣고 20초 동안 대답을 준비할 시간이 주어집니다. “삐” 소리 후 30초 동안 대답하면 됩니다." />
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="15dp"
+        android:background="#80FFC107"
         android:fontFamily="@font/roboto_bold"
+        android:layout_gravity="center"
         android:text="예시 문항"
         android:textColor="@color/black"
-        android:textSize="17dp" />
+        android:textStyle="bold"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
-        android:fontFamily="@font/roboto_thin"
-        android:text="취미가 뭐예요? 그 취미에 대해 이야기하세요." />
+        android:layout_gravity="center"
+        android:textSize="18dp"
+        android:text="취미가 뭐예요? 그 취미에 대해 이야기하세요."
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="모범 답안"
-        android:textColor="@color/black"
-        android:textSize="17dp" />
-
-    <TextView
-        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
+        android:background="#80FFC107"
+        android:layout_gravity="center"
+        android:text="모범 답안"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="15dp"
         android:fontFamily="@font/roboto_thin"
-        android:text="제 취미는 영화 보기예요. 저는 시간 있을 때 영화관에 가요. 집에서도 영화를 자주 봐요. 저는 재미있는 영화를 좋아해요. 슬픈 영화도 잘 봐요. 저는 이번 주말에 친구와 함께 영화관에 갈 거예요." />
+        android:text="제 취미는 영화 보기예요. 저는 시간 있을 때 영화관에 가요. 집에서도 영화를 자주 봐요. 저는 재미있는 영화를 좋아해요. 슬픈 영화도 잘 봐요. 저는 이번 주말에 친구와 함께 영화관에 갈 거예요."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
 
 </LinearLayout>

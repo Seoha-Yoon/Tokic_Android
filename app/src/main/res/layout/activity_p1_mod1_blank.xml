@@ -19,10 +19,9 @@
                 android:id="@+id/blank1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="15dp"
                 android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:textSize="22dp" />
 
             <ImageButton
                 android:id="@+id/stt1"
@@ -38,11 +37,9 @@
         android:id="@+id/blank2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="15dp"
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:textColor="@color/black"/>
-
 
             <ImageButton
         android:id="@+id/stt2"
@@ -53,17 +50,13 @@
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-
             <TextView
         android:id="@+id/blank3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="15dp"
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:textColor="@color/black"/>
-
-
 
             <ImageButton
         android:id="@+id/stt3"
@@ -74,17 +67,13 @@
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-
-
             <TextView
         android:id="@+id/blank4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="15dp"
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:textColor="@color/black"/>
-
 
             <ImageButton
         android:id="@+id/stt4"
@@ -102,9 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
 
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:textColor="@color/black"/>
-
 
             <ImageButton
         android:id="@+id/stt5"
@@ -122,9 +110,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
 
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:textColor="@color/black"/>
-
 
             <ImageButton
         android:id="@+id/stt6"
@@ -134,7 +121,6 @@
         android:scaleType="fitCenter"
         android:background="#FFFFFF"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
-
 
         </LinearLayout>
     </ScrollView>
