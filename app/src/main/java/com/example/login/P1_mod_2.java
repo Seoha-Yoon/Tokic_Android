@@ -118,11 +118,14 @@ public class P1_mod_2 extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    else{
-                        Intent intent2 = new Intent(P1_mod_2.this, P1_mod_2_incorrect.class);
-                        startActivity(intent2);
+                    //오류 수정해야함
+                    else if(!(answer.equals(key))){
+                        Intent intent = new Intent(P1_mod_2.this, P1_mod_2_fail.class);
+                        startActivity(intent);
                     }
 
+                    else
+                        Toast.makeText(getApplicationContext(),"NULL 오류",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast toast = Toast.makeText(getApplicationContext(),"모든 문장을 순서대로 클릭하세요",Toast.LENGTH_SHORT);

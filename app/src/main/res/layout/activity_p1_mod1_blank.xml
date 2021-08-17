@@ -7,223 +7,120 @@
     android:layout_marginRight="15dp">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/stt1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="#FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
-
-                <TextView
-                    android:id="@+id/blank1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
-
-
-            </LinearLayout>
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/blank1_ans"
+                android:id="@+id/blank1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="정답을 녹음하세요."
+                android:layout_marginTop="15dp"
                 android:textColor="@color/black"
-                android:textSize="25dp" />
+                android:textSize="22dp" />
 
+            <ImageButton
+                android:id="@+id/stt1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
-                <ImageButton
-                    android:id="@+id/stt2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="#FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
-
-                <TextView
-                    android:id="@+id/blank2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
-
-
-            </LinearLayout>
 
             <TextView
-                android:id="@+id/blank2_ans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="정답을 녹음하세요."
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+        android:id="@+id/blank2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"/>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
-                <ImageButton
-                    android:id="@+id/stt3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="#FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
-
-                <TextView
-                    android:id="@+id/blank3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
-
-
-            </LinearLayout>
+            <ImageButton
+        android:id="@+id/stt2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
             <TextView
-                android:id="@+id/blank3_ans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="정답을 녹음하세요."
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+        android:id="@+id/blank3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"/>
 
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
-                <ImageButton
-                    android:id="@+id/stt4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="#FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
-
-                <TextView
-                    android:id="@+id/blank4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
-
-
-            </LinearLayout>
+            <ImageButton
+        android:id="@+id/stt3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
             <TextView
-                android:id="@+id/blank4_ans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="정답을 녹음하세요."
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+        android:id="@+id/blank4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"/>
 
+            <ImageButton
+        android:id="@+id/stt4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
-                <ImageButton
-                    android:id="@+id/stt5"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="#FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
-
-                <TextView
-                    android:id="@+id/blank5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
-
-
-            </LinearLayout>
 
             <TextView
-                android:id="@+id/blank5_ans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="정답을 녹음하세요."
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+        android:id="@+id/blank5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+        android:textSize="22dp"
+        android:textColor="@color/black"/>
 
-                <ImageButton
-                    android:id="@+id/stt6"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="#FFFFFF"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+            <ImageButton
+        android:id="@+id/stt5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
-                <TextView
-                    android:id="@+id/blank6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
-
-
-            </LinearLayout>
 
             <TextView
-                android:id="@+id/blank6_ans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="정답을 녹음하세요."
-                android:textColor="@color/black"
-                android:textSize="25dp" />
+        android:id="@+id/blank6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
 
+        android:textSize="22dp"
+        android:textColor="@color/black"/>
+
+            <ImageButton
+        android:id="@+id/stt6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
 
         </LinearLayout>
     </ScrollView>

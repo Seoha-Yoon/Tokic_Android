@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="340dp"
-            android:layout_height="270dp"
+            android:layout_height="230dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/wiget_box">
@@ -26,9 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="37dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/roboto_thin"
+                android:fontFamily="@font/roboto_bold"
                 android:text="모의고사"
-                android:textColor="@color/black"
+                android:textColor="#515763"
                 android:textSize="23dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,8 +44,8 @@
                 android:backgroundTint="#AFDBC5"
                 android:fontFamily="@font/roboto_bold"
                 android:text="실전 모의고사"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textColor="#515763"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -54,7 +54,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="340dp"
-            android:layout_height="270dp"
+            android:layout_height="230dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/wiget_box">
@@ -65,9 +65,9 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="37dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/roboto_thin"
+                android:fontFamily="@font/roboto_bold"
                 android:text="영역별 진단"
-                android:textColor="@color/black"
+                android:textColor="#515763"
                 android:textSize="23dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
