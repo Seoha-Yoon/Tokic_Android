@@ -3,7 +3,13 @@
     package="com.example.login">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    // 녹음 권환, 녹음 파일 저장/읽기 권한
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -11,13 +17,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Login">
+        android:theme="@style/Theme.Login"
+        android:usesCleartextTraffic="true" >
         <activity android:name=".P1_mod_2_incorrect"></activity>
         <activity android:name=".P1_mod_2_correct" />
         <activity android:name=".P1_mod_3" />
         <activity android:name=".P1_mod_2" />
         <activity android:name=".P1_mod_1" />
         <activity android:name=".Part1Prob" />
+        <activity android:name=".Part2Prob"/>
+        <activity android:name=".Part3Prob"/>
+        <activity android:name=".Part4Prob"/>
+        <activity android:name=".Part5Prob"/>
+        <activity android:name=".Part6Prob"/>
+        <activity android:name=".TestResultActivity"/>
         <activity android:name=".P1_main" />
         <activity
             android:name=".MockTestActivity"
