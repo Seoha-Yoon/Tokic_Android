@@ -172,7 +172,6 @@ public class Part1Prob extends AppCompatActivity {
         play = (Button)findViewById(R.id.play);
         next = (Button)findViewById(R.id.btn_next);
 
-
         // 안드로이드폰 ID
         String idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -256,11 +255,11 @@ public class Part1Prob extends AppCompatActivity {
             }
         });
 
-        // for Countdown
-//        Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
-//        textViewCountDown = findViewById(R.id.tv_countdown);
-//        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
-//        startCountDown();
+         //for Countdown
+        Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
+        textViewCountDown = findViewById(R.id.tv_countdown);
+        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+        startCountDown();
     }
 
     private void signInAnonymously() {
