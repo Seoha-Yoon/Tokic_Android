@@ -7,6 +7,9 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
+
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="268dp"
@@ -26,7 +29,6 @@
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="70dp"
-        android:text="토픽스피킹"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -246,5 +248,7 @@
 
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

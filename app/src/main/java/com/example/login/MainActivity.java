@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 
 import com.google.android.material.chip.Chip;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
     //private FirebaseAuth mFirebaseAuth;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         scroll = findViewById(R.id.ScrollView);
