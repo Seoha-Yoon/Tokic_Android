@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="저는 시간 있을 때 영화관에 가요."
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="15dp"
             android:textSize="22dp"
             android:textColor="@color/black"/>
 
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="집에서도 영화를 자주 봐요"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="15dp"
             android:textSize="22dp"
             android:textColor="@color/black"/>
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="저는 재미있는 영화를 좋아해요."
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="15dp"
             android:textSize="22dp"
             android:textColor="@color/black"/>
 
@@ -54,7 +54,7 @@
             android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="15dp"
             android:text="슬픈 영화도 잘 봐요."
             android:textSize="22dp"
             android:textColor="@color/black"/>
@@ -63,7 +63,7 @@
             android:id="@+id/textView43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="15dp"
             android:text="저는 이번 주말에 친구와 함께 영화관에 갈 거예요."
             android:textSize="22dp"
             android:textColor="@color/black"/>

@@ -6,20 +6,27 @@ android:layout_height="match_parent"
 android:layout_marginLeft="15dp"
 android:layout_marginRight="15dp">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="15dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/blank1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageButton
@@ -28,35 +35,31 @@ android:layout_marginRight="15dp">
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                app:srcCompat="@drawable/recordmic" />
 
             <TextView
-                android:id="@+id/blank1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-
+                android:id="@+id/blank1_ans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text=" 버튼을 누른 뒤 녹음하세요."
+                android:textColor="#969696"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/blank1_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-            android:text="정답을 녹음하세요."
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-
-
-        <LinearLayout
+            android:id="@+id/blank2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt2"
@@ -64,34 +67,31 @@ android:layout_marginRight="15dp">
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                app:srcCompat="@drawable/recordmic" />
 
             <TextView
-                android:id="@+id/blank2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-
+                android:id="@+id/blank2_ans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text=" 버튼을 누른 뒤 녹음하세요."
+                android:textColor="#969696"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/blank2_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:text="정답을 녹음하세요."
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-
-
-        <LinearLayout
+            android:id="@+id/blank3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt3"
@@ -99,36 +99,31 @@ android:layout_marginRight="15dp">
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                app:srcCompat="@drawable/recordmic" />
 
             <TextView
-                android:id="@+id/blank3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-
+                android:id="@+id/blank3_ans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text=" 버튼을 누른 뒤 녹음하세요."
+                android:textColor="#969696"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/blank3_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-            android:text="정답을 녹음하세요."
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-
-
-
-        <LinearLayout
+            android:id="@+id/blank4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt4"
@@ -136,35 +131,31 @@ android:layout_marginRight="15dp">
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                app:srcCompat="@drawable/recordmic" />
 
             <TextView
-                android:id="@+id/blank4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-
+                android:id="@+id/blank4_ans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text=" 버튼을 누른 뒤 녹음하세요."
+                android:textColor="#969696"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/blank4_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-            android:text="정답을 녹음하세요."
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-
-
-        <LinearLayout
+            android:id="@+id/blank5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt5"
@@ -172,34 +163,31 @@ android:layout_marginRight="15dp">
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                app:srcCompat="@drawable/recordmic" />
 
             <TextView
-                android:id="@+id/blank5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-
+                android:id="@+id/blank5_ans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text=" 버튼을 누른 뒤 녹음하세요."
+                android:textColor="#969696"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/blank5_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-            android:text="정답을 녹음하세요."
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-
-        <LinearLayout
+            android:id="@+id/blank6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt6"
@@ -207,31 +195,20 @@ android:layout_marginRight="15dp">
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24" />
+                app:srcCompat="@drawable/recordmic" />
 
             <TextView
-                android:id="@+id/blank6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
+                android:id="@+id/blank6_ans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:text=" 버튼을 누른 뒤 녹음하세요."
+                android:textColor="#969696"
+                android:textSize="15dp" />
+        </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/blank6_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-            android:text="정답을 녹음하세요."
-            android:textColor="@color/black"
-            android:textSize="25dp" />
-
-
-    </LinearLayout>
-</ScrollView>
-
+    </ScrollView>
 </LinearLayout>

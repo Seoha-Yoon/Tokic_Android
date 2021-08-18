@@ -85,7 +85,7 @@ public class P1_mod_1_blank extends Fragment {
         blank_Q1.add("영화 보기예요.");
 
         a = (int) (Math.random() * blank_Q1.size());
-        blank_Q1.add(a, "(    ) ");
+        blank_Q1.add(a, "_____ ");
         answerSet.add(blank_Q1.remove(a + 1));
         Q1.setText(convertArrayListToStringAppend(blank_Q1));
 
@@ -96,7 +96,7 @@ public class P1_mod_1_blank extends Fragment {
         blank_Q2.add("가요. ");
 
         a = (int) (Math.random() * blank_Q2.size());
-        blank_Q2.add(a, "(    ) ");
+        blank_Q2.add(a, "_____ ");
         answerSet.add(blank_Q2.remove(a + 1));
         Q2.setText(convertArrayListToStringAppend(blank_Q2));
 
@@ -107,7 +107,7 @@ public class P1_mod_1_blank extends Fragment {
         blank_Q3.add("봐요. ");
 
         a = (int) (Math.random() * blank_Q3.size());
-        blank_Q3.add(a, "(    ) ");
+        blank_Q3.add(a, "_____ ");
         answerSet.add(blank_Q3.remove(a + 1));
         Q3.setText(convertArrayListToStringAppend(blank_Q3));
 
@@ -118,7 +118,7 @@ public class P1_mod_1_blank extends Fragment {
         blank_Q4.add("좋아해요. ");
 
         a = (int) (Math.random() * blank_Q4.size());
-        blank_Q4.add(a, "(    ) ");
+        blank_Q4.add(a, "_____ ");
         answerSet.add(blank_Q4.remove(a + 1));
         Q4.setText(convertArrayListToStringAppend(blank_Q4));
 
@@ -128,7 +128,7 @@ public class P1_mod_1_blank extends Fragment {
         blank_Q5.add("잘 봐요 ");
 
         a = (int) (Math.random() * blank_Q5.size());
-        blank_Q5.add(a, "(    ) ");
+        blank_Q5.add(a, "_____ ");
         answerSet.add(blank_Q5.remove(a + 1));
         Q5.setText(convertArrayListToStringAppend(blank_Q5));
 
@@ -140,7 +140,7 @@ public class P1_mod_1_blank extends Fragment {
         blank_Q6.add("갈거예요. ");
 
         a = (int) (Math.random() * blank_Q6.size());
-        blank_Q6.add(a, "(    ) ");
+        blank_Q6.add(a, "_____ ");
         answerSet.add(blank_Q6.remove(a + 1));
         Q6.setText(convertArrayListToStringAppend(blank_Q6));
 
