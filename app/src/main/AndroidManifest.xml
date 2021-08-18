@@ -30,6 +30,12 @@
         <activity android:name=".P1_mod_2" />
         <activity android:name=".P1_mod_1" />
         <activity android:name=".Part1Prob" />
+        <activity android:name=".Part2Prob"/>
+        <activity android:name=".Part3Prob"/>
+        <activity android:name=".Part4Prob"/>
+        <activity android:name=".Part5Prob"/>
+        <activity android:name=".Part6Prob"/>
+        <activity android:name=".TestResultActivity"/>
         <activity android:name=".P1_main" />
         <activity
             android:name=".MockTestActivity"
