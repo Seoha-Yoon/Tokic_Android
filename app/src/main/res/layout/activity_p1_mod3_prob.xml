@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
     tools:context=".P1_mod_3_prob">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/btn_back_mod3_prob"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/back"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인 테스트"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="다음 질문에 대답하시오"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/bg_rounded"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/Part1_problem"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+
+    <ImageButton
+        android:id="@+id/recordmic_mod3_prob"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/recordmic"
+        tools:ignore="VectorDrawableCompat" />
+
+    <Button
+        android:id="@+id/btn_submit_mod3_prob"
+        android:layout_width="wrap_content"
+        android:layout_height="69dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/submit_box"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+</LinearLayout>
