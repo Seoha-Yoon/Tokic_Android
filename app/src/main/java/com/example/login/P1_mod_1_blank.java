@@ -275,6 +275,7 @@ public class P1_mod_1_blank extends Fragment {
                 }
                 builder.append(str);
 
+
             }
 
             Q1_rec.setText(builder, TextView.BufferType.SPANNABLE);
