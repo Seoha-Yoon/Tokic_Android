@@ -248,7 +248,7 @@ public class Part1Prob extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                countDownTimer.cancel();
+                countDownTimer.cancel();
                 Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
                 startActivity(intent);
                 finish();
