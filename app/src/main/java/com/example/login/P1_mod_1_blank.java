@@ -44,6 +44,8 @@ public class P1_mod_1_blank extends Fragment {
     SpeechRecognizer mRecognizer;
     ImageButton stt1, stt2, stt3, stt4, stt5, stt6;
     Intent intent;
+    String ans;
+    int questionNum;
 
 
     @Override
@@ -64,6 +66,8 @@ public class P1_mod_1_blank extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fv = inflater.inflate(R.layout.activity_p1_mod1_blank, container, false);
+        ans = "";
+        questionNum = 0;
 
         int a;
         Q1 = fv.findViewById(R.id.blank1);
@@ -79,6 +83,13 @@ public class P1_mod_1_blank extends Fragment {
         Q4_rec = fv.findViewById(R.id.blank4_ans);
         Q5_rec = fv.findViewById(R.id.blank5_ans);
         Q6_rec = fv.findViewById(R.id.blank6_ans);
+
+        Q1_rec.setText("");
+        Q2_rec.setText("");
+        Q3_rec.setText("");
+        Q4_rec.setText("");
+        Q5_rec.setText("");
+        Q6_rec.setText("");
 
 
         blank_Q1.add("제 취미는 ");
@@ -162,6 +173,48 @@ public class P1_mod_1_blank extends Fragment {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
 
         stt1.setOnClickListener(v -> {
+            ans = "제 취미는 영화 보기예요";
+            questionNum = 1;
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
+            mRecognizer.setRecognitionListener(listener);
+            mRecognizer.startListening(intent);
+        });
+
+        stt2.setOnClickListener(v -> {
+            ans = "저는 시간 있을 때 영화관에 가요";
+            questionNum = 2;
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
+            mRecognizer.setRecognitionListener(listener);
+            mRecognizer.startListening(intent);
+        });
+
+        stt3.setOnClickListener(v -> {
+            ans = "집에서도 영화를 자주 봐요";
+            questionNum = 3;
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
+            mRecognizer.setRecognitionListener(listener);
+            mRecognizer.startListening(intent);
+        });
+
+        stt4.setOnClickListener(v -> {
+            ans = "저는 재미있는 영화를 좋아해요.";
+            questionNum = 4;
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
+            mRecognizer.setRecognitionListener(listener);
+            mRecognizer.startListening(intent);
+        });
+
+        stt5.setOnClickListener(v -> {
+            ans = "슬픈 영화도 잘 봐요.";
+            questionNum = 5;
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
+            mRecognizer.setRecognitionListener(listener);
+            mRecognizer.startListening(intent);
+        });
+
+        stt6.setOnClickListener(v -> {
+            ans = "저는 이번 주말에 친구와 함께 영화관에 갈거에요.";
+            questionNum = 6;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
             mRecognizer.setRecognitionListener(listener);
             mRecognizer.startListening(intent);
@@ -235,19 +288,8 @@ public class P1_mod_1_blank extends Fragment {
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            String ans = "제 취미는 영화 보기예요";
 
-//            for(int i=0; i<matches.size(); i++) {
-//                if(ans.charAt(i) == matches.get(i).charAt(0))
-//                    Q1_rec.setText(matches.get(i));
-//                else {
-//                    Q1_rec.setText(Html.fromHtml("<font color='#EE0000'> matches.get(i) </font>"));
-//                }
-//            }
-
-            Log.d("MyApp", Integer.toString(matches.get(0).length()));
-//            for(int i=0; i<matches.size(); i++)
-//                Log.d("MyApp",matches.get(i));
+            //Log.d("MyApp", Integer.toString(matches.get(0).length()));
 
             SpannableStringBuilder builder = new SpannableStringBuilder();
             for(int i=0, j=0; i<matches.get(0).length() && j<ans.length(); i++, j++) {
@@ -278,7 +320,27 @@ public class P1_mod_1_blank extends Fragment {
 
             }
 
-            Q1_rec.setText(builder, TextView.BufferType.SPANNABLE);
+            switch (questionNum){
+                case 1:
+                    Q1_rec.setText(builder, TextView.BufferType.SPANNABLE);
+                    break;
+                case 2:
+                    Q2_rec.setText(builder, TextView.BufferType.SPANNABLE);
+                    break;
+                case 3:
+                    Q3_rec.setText(builder, TextView.BufferType.SPANNABLE);
+                    break;
+                case 4:
+                    Q4_rec.setText(builder, TextView.BufferType.SPANNABLE);
+                    break;
+                case 5:
+                    Q5_rec.setText(builder, TextView.BufferType.SPANNABLE);
+                    break;
+                case 6:
+                    Q6_rec.setText(builder, TextView.BufferType.SPANNABLE);
+                    break;
+            }
+
         }
 
         @Override
