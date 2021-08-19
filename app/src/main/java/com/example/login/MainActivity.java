@@ -3,6 +3,7 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.google.firebase.FirebaseApp;
 public class MainActivity extends AppCompatActivity {
     //private FirebaseAuth mFirebaseAuth;
     HorizontalScrollView scroll;
-    Button btn_levelup;
+    Button btn_levelup,btn_home;
     Chip btn_result, btn_P1, btn_P2,btn_P3,btn_P4,btn_P5,btn_P6;
 
     @Override
@@ -28,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         scroll = findViewById(R.id.ScrollView);
         scroll.setHorizontalScrollBarEnabled(true);
+
+        btn_home=(Button)findViewById(R.id.btn_home);
+
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_result = (Chip)findViewById(R.id.btn_result); // = Fragment0
         btn_P1 = (Chip)findViewById(R.id.btn_P1);

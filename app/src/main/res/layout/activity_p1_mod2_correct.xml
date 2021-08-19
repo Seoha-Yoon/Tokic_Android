@@ -43,7 +43,7 @@
         android:textSize="25dp" />
 
     <Button
-        android:id="@+id/btn_check"
+        android:id="@+id/btn_check_mod2"
         android:layout_width="243dp"
         android:layout_height="64dp"
         android:layout_gravity="center"

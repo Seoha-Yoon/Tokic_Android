@@ -84,14 +84,6 @@ public class P1_mod_1_blank extends Fragment {
         Q5_rec = fv.findViewById(R.id.blank5_ans);
         Q6_rec = fv.findViewById(R.id.blank6_ans);
 
-        Q1_rec.setText("");
-        Q2_rec.setText("");
-        Q3_rec.setText("");
-        Q4_rec.setText("");
-        Q5_rec.setText("");
-        Q6_rec.setText("");
-
-
         blank_Q1.add("제 취미는 ");
         blank_Q1.add("영화 보기예요.");
 
@@ -173,6 +165,7 @@ public class P1_mod_1_blank extends Fragment {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
 
         stt1.setOnClickListener(v -> {
+            Q1_rec.setText("");
             ans = "제 취미는 영화 보기예요";
             questionNum = 1;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
@@ -181,6 +174,7 @@ public class P1_mod_1_blank extends Fragment {
         });
 
         stt2.setOnClickListener(v -> {
+            Q2_rec.setText("");
             ans = "저는 시간 있을 때 영화관에 가요";
             questionNum = 2;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
@@ -189,6 +183,7 @@ public class P1_mod_1_blank extends Fragment {
         });
 
         stt3.setOnClickListener(v -> {
+            Q3_rec.setText("");
             ans = "집에서도 영화를 자주 봐요";
             questionNum = 3;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
@@ -197,6 +192,7 @@ public class P1_mod_1_blank extends Fragment {
         });
 
         stt4.setOnClickListener(v -> {
+            Q4_rec.setText("");
             ans = "저는 재미있는 영화를 좋아해요.";
             questionNum = 4;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
@@ -205,6 +201,7 @@ public class P1_mod_1_blank extends Fragment {
         });
 
         stt5.setOnClickListener(v -> {
+            Q5_rec.setText("");
             ans = "슬픈 영화도 잘 봐요.";
             questionNum = 5;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
@@ -213,6 +210,7 @@ public class P1_mod_1_blank extends Fragment {
         });
 
         stt6.setOnClickListener(v -> {
+            Q6_rec.setText("");
             ans = "저는 이번 주말에 친구와 함께 영화관에 갈거에요.";
             questionNum = 6;
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
