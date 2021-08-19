@@ -15,13 +15,26 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="4dp"
-        android:text="TOKIC Speaking"
+        android:text="TOKIC SPEAKING"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/black"
-        android:textSize="35dp"
+        android:textSize="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="65dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#FDC05B"
+        android:layout_marginTop="2dp"
+        android:text="Home"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -144,7 +157,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp" >
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

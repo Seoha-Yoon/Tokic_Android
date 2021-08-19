@@ -27,5 +27,15 @@ public class P1_mod_2_correct extends AppCompatActivity {
             }
         });
 
+        btn_check=findViewById(R.id.btn_check_mod2);
+
+        btn_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(P1_mod_2_correct.this, P1_mod_3.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

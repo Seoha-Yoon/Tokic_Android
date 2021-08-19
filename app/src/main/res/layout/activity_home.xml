@@ -39,8 +39,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
+        android:layout_marginStart="90dp"
+        android:gravity="center"
         android:text="AI 튜터와 함께하는 한국어 회화 공부"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview" />
@@ -206,39 +206,43 @@
                         android:id="@+id/imageButton"
                         android:layout_width="170dp"
                         android:layout_height="200dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/rec_study_ex1" />
+                        android:background="@drawable/rec_study_ex1"
+                        android:scaleType="fitCenter" />
 
                     <ImageButton
                         android:id="@+id/imageButton2"
                         android:layout_width="170dp"
                         android:layout_height="200dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/rec_study_ex2" />
+                        android:background="@drawable/rec_study_ex2"
+                        android:scaleType="fitCenter" />
 
                     <ImageButton
                         android:id="@+id/imageButton3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/rec_study_ex1" />
+                        android:layout_width="170dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/rec_study_ex1"
+                        android:scaleType="fitCenter" />
 
                     <ImageButton
                         android:id="@+id/imageButton4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/rec_study_ex2" />
+                        android:layout_width="170dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/rec_study_ex2"
+                        android:scaleType="fitCenter"/>
 
                     <ImageButton
                         android:id="@+id/imageButton6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/rec_study_ex1" />
+                        android:layout_width="170dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/rec_study_ex1"
+                        android:scaleType="fitCenter" />
 
                     <ImageButton
                         android:id="@+id/imageButton5"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        app:srcCompat="@drawable/rec_study_ex1" />
+                        android:layout_width="170dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/rec_study_ex2"
+                        android:scaleType="fitCenter" />
 
                 </LinearLayout>
             </HorizontalScrollView>

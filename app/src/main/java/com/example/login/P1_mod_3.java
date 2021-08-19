@@ -29,7 +29,7 @@ public class P1_mod_3 extends AppCompatActivity {
 
         btn_start=findViewById(R.id.btn_start_mod3);
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(P1_mod_3.this, P1_mod_3_prob.class);
