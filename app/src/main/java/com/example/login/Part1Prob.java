@@ -10,6 +10,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioRecord;
+import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -45,8 +49,12 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -81,12 +89,22 @@ public class Part1Prob extends AppCompatActivity {
 
     // voice recording
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
-    private MediaRecorder recorder;
-    private String outputFile;
+    private String outputFile = null;
 
-    // playing voice
-    private MediaPlayer player;
-    private int position = 0;
+    private int mAudioSource = MediaRecorder.AudioSource.MIC;
+    private int mSampleRate = 44100;
+    private int mChannelCount = AudioFormat.CHANNEL_IN_STEREO;
+    private int mAudioFormat = AudioFormat.ENCODING_PCM_16BIT;
+    private int mBufferSize = AudioTrack.getMinBufferSize(mSampleRate, mChannelCount, mAudioFormat);
+
+    public AudioRecord mAudioRecord = null;
+
+    public Thread mRecordThread = null;
+    public boolean isRecording = false;
+
+    public AudioTrack mAudioTrack = null;
+    public Thread mPlayThread = null;
+    public boolean isPlaying = false;
 
     private ImageButton record;
     private Button stop, play, next;
@@ -139,6 +157,35 @@ public class Part1Prob extends AppCompatActivity {
         }
     }
 
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -167,6 +214,8 @@ public class Part1Prob extends AppCompatActivity {
             }
         }
 
+        verifyStoragePermissions(this);
+
         record = (ImageButton)findViewById(R.id.record);
         stop = (Button)findViewById(R.id.btn_submit);
         play = (Button)findViewById(R.id.play);
@@ -181,12 +230,101 @@ public class Part1Prob extends AppCompatActivity {
         SimpleDateFormat simpleDate = new SimpleDateFormat("/yyyyMMdd_hhmmss");
         String getTime = simpleDate.format(mDate);
 
-//        outputFile = getExternalCacheDir().getAbsolutePath();
+        // outputFile = getExternalCacheDir().getAbsolutePath();
         outputFile = Environment.getExternalStorageDirectory().getAbsolutePath();   // 내부저장소에 저장되는 경로
         outputFile += getTime;
         outputFile += "_test_part1_";
         outputFile += idByANDROID_ID;
         outputFile += ".3gp";
+
+        //for audio recording
+        mAudioRecord = new AudioRecord(mAudioSource, mSampleRate, mChannelCount, mAudioFormat, mBufferSize);
+        mAudioRecord.startRecording();
+
+        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, mSampleRate, mChannelCount, mAudioFormat, mBufferSize, AudioTrack.MODE_STREAM);
+
+        mRecordThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                byte[] readData = new byte[mBufferSize];
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(outputFile);
+                } catch(FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                while(isRecording) {
+                    int ret = mAudioRecord.read(readData, 0, mBufferSize);
+                    Log.d(TAG, "read bytes is " + ret);
+
+                    try {
+                        fos.write(readData, 0, mBufferSize);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+
+                mAudioRecord.stop();
+                mAudioRecord.release();
+                mAudioRecord = null;
+
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mPlayThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                byte[] writeData = new byte[mBufferSize];
+                FileInputStream fis = null;
+                try {
+                    fis = new FileInputStream(outputFile);
+                }catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                DataInputStream dis = new DataInputStream(fis);
+                mAudioTrack.play();
+
+                while(isPlaying) {
+                    try {
+                        int ret = dis.read(writeData, 0, mBufferSize);
+                        if (ret <= 0) {
+                            (Part1Prob.this).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    isPlaying = false;
+                                    play.setText("Play");
+                                }
+                            });
+
+                            break;
+                        }
+                        mAudioTrack.write(writeData, 0, ret);
+                    }catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                mAudioTrack.stop();
+                mAudioTrack.release();
+                mAudioTrack = null;
+
+                try {
+                    dis.close();
+                    fis.close();
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
 
 
         // flask 통신
@@ -220,30 +358,21 @@ public class Part1Prob extends AppCompatActivity {
 
         System.out.println("==================="+outputFile+"=====================");
 
-        record.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                recordAudio();
-                Toast.makeText(Part1Prob.this,"Recording started...", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopRecording();
-                Toast.makeText(Part1Prob.this,"Recording stopped...", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playAudio();
-                Toast.makeText(Part1Prob.this,"재생 시작", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        record.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                recordAudio();
+//                Toast.makeText(Part1Prob.this,"Recording started...", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        play.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                playAudio();
+//                Toast.makeText(Part1Prob.this,"재생 시작", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,6 +389,7 @@ public class Part1Prob extends AppCompatActivity {
         textViewCountDown = findViewById(R.id.tv_countdown);
         timeLeftInMillis = COUNTDOWN_IN_MILLIS;
         startCountDown();
+
     }
 
     private void signInAnonymously() {
@@ -276,36 +406,6 @@ public class Part1Prob extends AppCompatActivity {
                         Log.e(TAG, "signInAnonymously:FAILURE", exception);
                     }
                 });
-    }
-
-    public void recordAudio(){
-        recorder = new MediaRecorder();
-        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        recorder.setOutputFile(outputFile);
-
-        try{
-            recorder.prepare();
-
-            Toast.makeText(Part1Prob.this,"녹음 시작", Toast.LENGTH_SHORT).show();
-
-        }catch (IOException e){
-
-            Log.e(LOG_TAG,"prepare() failed");
-            e.printStackTrace();
-        }
-        recorder.start();
-    }
-
-    public void stopRecording(){
-        if(recorder != null){
-            recorder.stop();
-            recorder.release();
-            recorder = null;
-
-//            uploadAudio();
-        }
     }
 
     public void uploadAudio(){
@@ -328,24 +428,6 @@ public class Part1Prob extends AppCompatActivity {
 
     }
 
-    public void playAudio(){
-        try {
-            closePlayer();
-            player = new MediaPlayer();
-            player.setDataSource(outputFile);
-            player.prepare();
-            player.start();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void closePlayer(){
-        if(player !=null){
-            player.release();
-            player = null;
-        }
-    }
 
     private void startCountDown(){
         countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
@@ -361,7 +443,7 @@ public class Part1Prob extends AppCompatActivity {
                 updateCountDownText();
                 finish();
                 Toast.makeText(Part1Prob.this, "응답시간이 초과했습니다.", Toast.LENGTH_SHORT).show();
-                stopRecording();
+                // stopRecording();
                 Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
                 startActivity(intent);
             }
@@ -380,8 +462,43 @@ public class Part1Prob extends AppCompatActivity {
         // Start Audio Recording
         if(seconds == 20) {
             Toast.makeText(Part1Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
-            recordAudio();
+            // recordAudio();
         }
+    }
+
+    public void onRecord(View view) {
+        if(isRecording == true) {
+            isRecording = false;
+            Toast.makeText(Part1Prob.this, "녹음 시작!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            isRecording = true;
+            Toast.makeText(Part1Prob.this, "녹음멈춤!", Toast.LENGTH_SHORT).show();
+
+            if(mAudioRecord == null) {
+                mAudioRecord =  new AudioRecord(mAudioSource, mSampleRate, mChannelCount, mAudioFormat, mBufferSize);
+                mAudioRecord.startRecording();
+            }
+            mRecordThread.start();
+        }
+
+    }
+
+    public void onPlay(View view) {
+        if(isPlaying == true) {
+            isPlaying = false;
+            play.setText("Play");
+        }
+        else {
+            isPlaying = true;
+            play.setText("Stop");
+
+            if(mAudioTrack == null) {
+                mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, mSampleRate, mChannelCount, mAudioFormat, mBufferSize, AudioTrack.MODE_STREAM);
+            }
+            mPlayThread.start();
+        }
+
     }
 
 

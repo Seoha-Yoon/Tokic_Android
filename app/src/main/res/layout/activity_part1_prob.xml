@@ -28,17 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:backgroundTint="@color/submit_box"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
@@ -69,11 +58,14 @@
         android:id="@+id/record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="100dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+        android:onClick="onRecord"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainText"
         app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24"
         tools:ignore="VectorDrawableCompat" />
 
@@ -82,20 +74,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:onClick="onPlay"
         android:text="play"
         app:layout_constraintBottom_toTopOf="@+id/record"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
     <TextView
         android:id="@+id/tvMainText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="MAIN TEXT"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/play"
-        android:text="MAIN TEXT" />
+        app:layout_constraintTop_toBottomOf="@id/play" />
 
 
     <Button
