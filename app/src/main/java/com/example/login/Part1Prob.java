@@ -235,7 +235,7 @@ public class Part1Prob extends AppCompatActivity {
         outputFile += getTime;
         outputFile += "_test_part1_";
         outputFile += idByANDROID_ID;
-        outputFile += ".3gp";
+        outputFile += ".pcm";
 
         //for audio recording
         mAudioRecord = new AudioRecord(mAudioSource, mSampleRate, mChannelCount, mAudioFormat, mBufferSize);
@@ -461,7 +461,7 @@ public class Part1Prob extends AppCompatActivity {
 
         // Start Audio Recording
         if(seconds == 20) {
-            Toast.makeText(Part1Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(Part1Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
             // recordAudio();
         }
     }
@@ -469,11 +469,11 @@ public class Part1Prob extends AppCompatActivity {
     public void onRecord(View view) {
         if(isRecording == true) {
             isRecording = false;
-            Toast.makeText(Part1Prob.this, "녹음 시작!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Part1Prob.this, "녹음 멈춤!", Toast.LENGTH_SHORT).show();
         }
         else {
             isRecording = true;
-            Toast.makeText(Part1Prob.this, "녹음멈춤!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Part1Prob.this, "녹음 시작!", Toast.LENGTH_SHORT).show();
 
             if(mAudioRecord == null) {
                 mAudioRecord =  new AudioRecord(mAudioSource, mSampleRate, mChannelCount, mAudioFormat, mBufferSize);
