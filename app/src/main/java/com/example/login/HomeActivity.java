@@ -46,7 +46,7 @@ import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final Object BASE_URL = "http://18.118.47.176:5000/";
+    private static final String BASE_URL = "http://3.139.81.205:5000/";  // aws public IPv4
     Button btn_test, btn_part;
 
 
@@ -73,14 +73,15 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(HomeActivity.this, idByANDROID_ID, Toast.LENGTH_SHORT).show();
 
 
-        // flask 통신
-        OkHttpClient okHttpClient = new OkHttpClient();
 
+        // flask 통신
+//        OkHttpClient okHttpClient = new OkHttpClient();
+//
 //        // POST TEST
 //        RequestBody formbody = new MultipartBody.Builder()
 //                .setType(MultipartBody.FORM)
-//                .addFormDataPart("key","value")
-//                .addFormDataPart("key2", "value")
+//                .addFormDataPart("android_id",idByANDROID_ID)
+//                .addFormDataPart("url", "Url test")
 //                .build();
 //
 //        Request req = new Request.Builder()
@@ -93,36 +94,35 @@ public class HomeActivity extends AppCompatActivity {
 //            @Override
 //            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
 //                System.out.println(response.body().string());
+//                System.out.println("여기야여기");
 //            }
 //
 //            @Override
 //            public void onFailure(@NotNull Call call, @NotNull IOException e) {
 //                System.out.println("fail");
+//                System.out.println("실패했나");
 //
 //            }
-//
 //        });
 
         // GET TEST
-        Request request = new Request.Builder().url("http://18.118.47.176:5000/one").build();
-
-
-        okHttpClient.newCall(request).enqueue(new Callback() {
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                TextView textView = findViewById(R.id.textview);
-                System.out.println(response.body().string());
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                TextView textView = findViewById(R.id.textview);
-                System.out.println("fail");
-
-            }
-
-        });
+//        Request request = new Request.Builder().url(BASE_URL).build();
+//
+//        okHttpClient.newCall(request).enqueue(new Callback() {
+//
+//            @Override
+//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                System.out.println(response.body().string());
+//
+//            }
+//
+//            @Override
+//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                System.out.println("get 요청 fail");
+//                System.out.println(e.toString());
+//            }
+//
+//        });
     }
 
 

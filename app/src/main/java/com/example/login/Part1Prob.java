@@ -81,7 +81,7 @@ import static android.content.ContentValues.TAG;
 public class Part1Prob extends AppCompatActivity {
 
     private String LOG_TAG = "Record_log";
-    private static final Object BASE_URL = "http://18.118.47.176:5000/";
+    private static final Object BASE_URL = "http://3.139.81.205:5000/";
 
     @Override
     public void onBackPressed() {
@@ -119,7 +119,6 @@ public class Part1Prob extends AppCompatActivity {
     private TestDBHelper mTestDBHelper;
 
     // upload video
-    private FirebaseAuth mAuth;
     private FirebaseStorage storage;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
@@ -128,14 +127,6 @@ public class Part1Prob extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        System.out.println("====================="+user+"======================");
-//        if (user != null) {
-//            // do your stuff
-//        } else {
-//            signInAnonymously();
-//        }
     }
 
     @Override
@@ -192,7 +183,6 @@ public class Part1Prob extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
 
-        mAuth = FirebaseAuth.getInstance();
 
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgress = new ProgressDialog(this);
@@ -347,11 +337,14 @@ public class Part1Prob extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 System.out.println(response.body().string());
+                System.out.println("여기야여기");
             }
 
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 System.out.println("fail");
+                System.out.println("실패했나");
+
             }
         });
 
@@ -392,21 +385,6 @@ public class Part1Prob extends AppCompatActivity {
 
     }
 
-    private void signInAnonymously() {
-        mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                // do your stuff
-                System.out.println("Firebase SignIn Success");
-            }
-        })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Log.e(TAG, "signInAnonymously:FAILURE", exception);
-                    }
-                });
-    }
 
     public void uploadAudio(){
 

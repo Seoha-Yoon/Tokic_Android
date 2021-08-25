@@ -22,7 +22,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Login">
+        android:theme="@style/Theme.Login"
+        android:usesCleartextTraffic="true">   <!-- http 접근 허용 -->
         <activity android:name=".P1_mod_3_result"></activity>
         <activity android:name=".P1_mod_2_fail" />
         <activity android:name=".P1_mod_3_prob" />
