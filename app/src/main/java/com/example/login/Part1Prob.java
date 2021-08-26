@@ -92,7 +92,7 @@ public class Part1Prob extends AppCompatActivity {
     private String outputFile = null;
 
     private int mAudioSource = MediaRecorder.AudioSource.MIC;
-    private int mSampleRate = 44100;
+    private int mSampleRate = 8000;
     private int mChannelCount = AudioFormat.CHANNEL_IN_STEREO;
     private int mAudioFormat = AudioFormat.ENCODING_PCM_16BIT;
     private int mBufferSize = AudioTrack.getMinBufferSize(mSampleRate, mChannelCount, mAudioFormat);
