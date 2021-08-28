@@ -80,8 +80,9 @@ import static android.content.ContentValues.TAG;
 
 public class Part1Prob extends AppCompatActivity {
 
-    private String LOG_TAG = "Record_log";
     private static final Object BASE_URL = "http://3.139.81.205:5000/";
+    public static final String test_or_verify = "test";
+    public static final String part = "part_1";
 
     @Override
     public void onBackPressed() {
@@ -90,6 +91,8 @@ public class Part1Prob extends AppCompatActivity {
     // voice recording
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private String outputFile = null;
+    private String outputUri = null;
+
 
     private int mAudioSource = MediaRecorder.AudioSource.MIC;
     private int mSampleRate = 8000;
@@ -119,10 +122,13 @@ public class Part1Prob extends AppCompatActivity {
     private TestDBHelper mTestDBHelper;
 
     // upload video
-    private FirebaseStorage storage;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
-    private TextView tvMainText;
+    private OkHttpClient okHttpClient;
+    private String idByANDROID_ID;
+
+    // POST
+    String getTime;
 
     @Override
     protected void onStart() {
@@ -184,6 +190,7 @@ public class Part1Prob extends AppCompatActivity {
         setContentView(R.layout.activity_part1_prob);
 
 
+        // firebase
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgress = new ProgressDialog(this);
 
@@ -206,26 +213,34 @@ public class Part1Prob extends AppCompatActivity {
 
         verifyStoragePermissions(this);
 
+        // 버튼
         record = (ImageButton)findViewById(R.id.record);
         stop = (Button)findViewById(R.id.btn_submit);
         play = (Button)findViewById(R.id.play);
         next = (Button)findViewById(R.id.btn_next);
 
+
+
         // 안드로이드폰 ID
-        String idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
         // 현재 날짜
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
         SimpleDateFormat simpleDate = new SimpleDateFormat("/yyyyMMdd_hhmmss");
-        String getTime = simpleDate.format(mDate);
+        getTime = simpleDate.format(mDate);
 
         // outputFile = getExternalCacheDir().getAbsolutePath();
         outputFile = Environment.getExternalStorageDirectory().getAbsolutePath();   // 내부저장소에 저장되는 경로
-        outputFile += getTime;
-        outputFile += "_test_part1_";
-        outputFile += idByANDROID_ID;
-        outputFile += ".pcm";
+
+        outputUri = getTime;
+        outputUri += "_test_part1_";
+        outputUri += idByANDROID_ID;
+        outputUri += ".pcm";
+
+        outputFile += outputUri;
+
+
 
         //for audio recording
         mAudioRecord = new AudioRecord(mAudioSource, mSampleRate, mChannelCount, mAudioFormat, mBufferSize);
@@ -317,39 +332,6 @@ public class Part1Prob extends AppCompatActivity {
 
 
 
-        // flask 통신
-        OkHttpClient okHttpClient = new OkHttpClient();
-
-        // POST TEST
-        RequestBody formbody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("android_id",idByANDROID_ID)
-                .addFormDataPart("url", outputFile)
-                .build();
-
-        Request req = new Request.Builder()
-                .url(BASE_URL + "post")
-                .post(formbody)
-                .build();
-
-        okHttpClient.newCall(req).enqueue(new Callback() {
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                System.out.println(response.body().string());
-                System.out.println("여기야여기");
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                System.out.println("fail");
-                System.out.println("실패했나");
-
-            }
-        });
-
-
-        System.out.println("==================="+outputFile+"=====================");
 
 //        record.setOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -391,16 +373,54 @@ public class Part1Prob extends AppCompatActivity {
         mProgress.setMessage("Uploading Audio...");
         mProgress.show();
 
-        StorageReference filepath = mStorage.child("Audio").child("new_audio.3gp");
+        StorageReference filepath = mStorage.child("Audio").child(outputUri);
 
         Uri uri = Uri.fromFile(new File(outputFile));
+
+        System.out.println(outputFile);
+        System.out.println(uri);
+        System.out.println(filepath);
+
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                mProgress.dismiss();
-                tvMainText.setText("Uploading Finished");
 
+                mProgress.dismiss();
                 Toast.makeText(Part1Prob.this,"Uploading Finished", Toast.LENGTH_SHORT).show();
+
+                // flask 통신
+                okHttpClient = new OkHttpClient();
+
+                // POST
+                RequestBody formbody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("android_id",idByANDROID_ID)
+                        .addFormDataPart("test_or_verify",test_or_verify)
+                        .addFormDataPart("part",part)
+                        .addFormDataPart("url", outputUri)
+                        .addFormDataPart("date_time", getTime)
+                        .build();
+
+                Request req = new Request.Builder()
+                        .url(BASE_URL + "post")
+                        .post(formbody)
+                        .build();
+
+                okHttpClient.newCall(req).enqueue(new Callback() {
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        System.out.println(response.body().string());
+                        System.out.println("여기야여기");
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        System.out.println("fail");
+                        System.out.println("실패했나");
+
+                    }
+                });
             }
         });
 
@@ -448,6 +468,7 @@ public class Part1Prob extends AppCompatActivity {
         if(isRecording == true) {
             isRecording = false;
             Toast.makeText(Part1Prob.this, "녹음 멈춤!", Toast.LENGTH_SHORT).show();
+            uploadAudio();
         }
         else {
             isRecording = true;
