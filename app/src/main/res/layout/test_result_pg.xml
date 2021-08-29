@@ -1,16 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test result"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/test_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="학습리포트"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/similarity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모범 답변 유사도" />
+
+        <TextView
+            android:id="@+id/sc_similarity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pronunciation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="발음" />
+        <TextView
+            android:id="@+id/sc_pronunciation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fluency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유창성" />
+        <TextView
+            android:id="@+id/sc_fluency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/expressiveness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="표현력" />
+        <TextView
+            android:id="@+id/sc_expressiveness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sentence_relevance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문장의 적절성" />
+        <TextView
+            android:id="@+id/sc_relevance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
