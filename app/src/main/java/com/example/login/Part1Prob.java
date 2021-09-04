@@ -113,6 +113,10 @@ public class Part1Prob extends AppCompatActivity {
     ParcelFileDescriptor file;
 
     @Override
+    public void onBackPressed() {
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
