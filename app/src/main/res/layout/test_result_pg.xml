@@ -12,102 +12,71 @@
         android:layout_weight="1"
         android:text="학습리포트"/>
 
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="8">
 
-        <TextView
-            android:id="@+id/similarity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="모범 답변 유사도" />
-
-        <TextView
-            android:id="@+id/sc_similarity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점수"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/pronunciation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="발음" />
-        <TextView
-            android:id="@+id/sc_pronunciation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점수"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/fluency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="유창성" />
-        <TextView
-            android:id="@+id/sc_fluency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점수"/>
-
-    </LinearLayout>
+        <org.eazegraph.lib.charts.VerticalBarChart
+            android:id="@+id/score_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:egBarWidth="30dp"
+            app:egFixedBarWidth="true"
+            android:padding="20dp"
+            app:egShowValues="true"
+            app:egUseMaximumValue="true"
+            app:egShowDecimal="false"
+            app:egShowBarLabel="false"
+            app:egLegendHeight="0dp"
+        />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="문장의 답변 유사도"
+                android:padding="20dp"/>
 
-        <TextView
-            android:id="@+id/expressiveness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="표현력" />
-        <TextView
-            android:id="@+id/sc_expressiveness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점수"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="발음"
+                android:padding="20dp"
+                />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="유창성"
+                android:padding="20dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="표현력"
+                android:padding="20dp"/>
 
-        <TextView
-            android:id="@+id/sentence_relevance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="문장의 적절성" />
-        <TextView
-            android:id="@+id/sc_relevance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="점수"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="문장의 적절성"
+                android:padding="20dp"/>
 
-    </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
 
 

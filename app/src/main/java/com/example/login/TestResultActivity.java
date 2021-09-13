@@ -8,28 +8,48 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.eazegraph.lib.charts.BarChart;
+import org.eazegraph.lib.charts.VerticalBarChart;
+import org.eazegraph.lib.models.BarModel;
+
 public class TestResultActivity extends AppCompatActivity {
 
-    TextView similarity, pronunciation, fluency, expressiveness, relevance;
+    VerticalBarChart barChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_result_pg);
 
-        similarity = findViewById(R.id.sc_similarity);
-        pronunciation = findViewById(R.id.sc_pronunciation);
-        fluency = findViewById(R.id.sc_fluency);
-        expressiveness = findViewById(R.id.sc_expressiveness);
-        relevance = findViewById(R.id.sc_relevance);
+        barChart = (VerticalBarChart)findViewById(R.id.score_chart);
 
-        // 점수로 바꾸기
-        similarity.setText("0");
-        pronunciation.setText("0");
-        fluency.setText("0");
-        expressiveness.setText("0");
-        relevance.setText("0");
+        setBarChart();
+
     }
+
+    private void setBarChart() {
+
+        barChart.setMaximumValue(100f);
+        barChart.clearChart();
+
+        // 점수 float 형
+        // 모변 답변 유사도
+        barChart.addBar(new BarModel(74f, 0xFFC6A9FF));
+        // 발음
+        barChart.addBar(new BarModel(23f, 0xFFFFCF86));
+        // 유창성
+        barChart.addBar(new BarModel(74f, 0xFF74C7E5));
+        // 표현력
+        barChart.addBar(new BarModel(96f, 0xFFA2E0C1));
+        // 문장의 적절성
+        barChart.addBar(new BarModel(96f, 0xFFD9A5B5));
+
+        barChart.startAnimation();
+
+    }
+
+
 
 
 }
