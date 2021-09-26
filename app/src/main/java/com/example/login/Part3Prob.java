@@ -128,7 +128,7 @@ public class Part3Prob extends AppCompatActivity {
     private void recordAudio() {
 
         ContentValues values = new ContentValues(4);
-        values.put(MediaStore.Audio.Media.DISPLAY_NAME, "No1."+idByANDROID_ID+getTime+"test.mp3");
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, "No3."+idByANDROID_ID+getTime+"test.mp3");
         values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
         values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
