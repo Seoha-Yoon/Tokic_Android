@@ -29,18 +29,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:backgroundTint="@color/submit_box"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
@@ -114,35 +102,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
-    <ImageButton
-        android:id="@+id/record"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btn_submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_fiber_manual_record_24"
-        tools:ignore="VectorDrawableCompat" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/sttResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="음성인식 결과"
-        app:layout_constraintBottom_toTopOf="@+id/record"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageButton
+            android:id="@+id/start_recording"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ic_baseline_fiber_manual_record_24"
+            android:backgroundTint="#CC0000"/>
+
+        <ImageButton
+            android:id="@+id/stop_recording"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/ic_media_pause"
+            android:backgroundTint="#B3FF0000" />
+
+        <ImageButton
+            android:id="@+id/play_recording"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/ic_media_play"
+            android:backgroundTint="#B3FF0000"
+            android:text="PLAY" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="play"
-        app:layout_constraintBottom_toTopOf="@+id/record"
+        android:id="@+id/btn_submit"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/submit_box"
+        android:text="Submit"
+        android:textSize="20dp"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

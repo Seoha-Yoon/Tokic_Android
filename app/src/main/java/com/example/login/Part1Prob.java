@@ -1,86 +1,35 @@
 package com.example.login;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Parameter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
-import static android.content.ContentValues.TAG;
 
 public class Part1Prob extends AppCompatActivity {
 
@@ -132,27 +81,31 @@ public class Part1Prob extends AppCompatActivity {
 
         permissionCheck();
 
-        Button startRecord =findViewById(R.id.start_recording);
-        Button stopRecord = findViewById(R.id.stop_recording);
-        Button playRecord = findViewById(R.id.play_recording);
+        ImageButton startRecord =findViewById(R.id.start_recording);
+        ImageButton stopRecord = findViewById(R.id.stop_recording);
+        ImageButton playRecord = findViewById(R.id.play_recording);
         Button next=findViewById(R.id.btn_next);
 
         startRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recordAudio();
+                stopRecord.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), android.R.color.holo_red_dark));
             }
         });
+
         stopRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stopAudio();
+                playRecord.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), android.R.color.holo_red_dark));
             }
         });
+
         playRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playAudio();
+                if (file != null) playAudio();
             }
         });
 
@@ -177,7 +130,7 @@ public class Part1Prob extends AppCompatActivity {
     private void recordAudio() {
 
         ContentValues values = new ContentValues(4);
-        values.put(MediaStore.Audio.Media.DISPLAY_NAME, idByANDROID_ID+getTime+"test.mp3");
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, "No1."+idByANDROID_ID+getTime+"test.mp3");
         values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
         values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
@@ -212,6 +165,7 @@ public class Part1Prob extends AppCompatActivity {
             audioRecorder.release();
             audioRecorder = null;
             Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -258,7 +212,7 @@ public class Part1Prob extends AppCompatActivity {
                 updateCountDownText();
                 finish();
                 Toast.makeText(Part1Prob.this, "응답시간이 초과했습니다.", Toast.LENGTH_SHORT).show();
-                // stopRecording();
+                stopAudio();
                 Intent intent = new Intent(Part1Prob.this, Part2Prob.class);
                 startActivity(intent);
             }
