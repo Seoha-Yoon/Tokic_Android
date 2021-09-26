@@ -1,12 +1,18 @@
 package com.example.login;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,28 +24,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.storage.StorageReference;
+
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
+import okhttp3.OkHttpClient;
+
 public class Part3Prob extends AppCompatActivity {
-
-    @Override
-    public void onBackPressed() {
-    }
-
-    // voice recording
-    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
-    private MediaRecorder recorder;
-    private String outputFile;
-
-    // playing voice
-    private MediaPlayer player;
-    private int position = 0;
-
-    private ImageButton record;
-    private Button stop, play, next;
 
     // countdown
     TextView textViewCountDown;
@@ -50,24 +47,20 @@ public class Part3Prob extends AppCompatActivity {
     // DB
     private TestDBHelper mTestDBHelper;
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    // upload video
+    private StorageReference mStorage;
+    private ProgressDialog mProgress;
+    private OkHttpClient okHttpClient;
+    private String idByANDROID_ID;
 
-        switch (requestCode){
-            case REQUEST_RECORD_AUDIO_PERMISSION:
-                if(grantResults.length>0) {
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        Toast.makeText(Part3Prob.this, "Audio 권한을 사용자가 승인함.", Toast.LENGTH_LONG).show();
-                    } else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                        Toast.makeText(Part3Prob.this, "Audio 권한을 사용자가 거부함.", Toast.LENGTH_LONG).show();
-                    }
-                }else{
-                    Toast.makeText(Part3Prob.this,"Audio 권한을 부여받지 못", Toast.LENGTH_LONG).show();
-                }
-                break;
-        }
-    }
+    // POST
+    String getTime;
+
+    //Recording & Playing
+    MediaPlayer player;
+    MediaRecorder audioRecorder;
+    Uri audiouri;
+    ParcelFileDescriptor file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,49 +68,45 @@ public class Part3Prob extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part3_prob);
 
+        // 안드로이드폰 ID
+        idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
         // initialize DB
         mTestDBHelper = new TestDBHelper(Part3Prob.this);
+        // 현재 날짜
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("/yyyyMMdd_hhmmss");
+        getTime = simpleDate.format(mDate);
 
-        int permissionCheck = ContextCompat.checkSelfPermission(Part3Prob.this, Manifest.permission.RECORD_AUDIO);
+        permissionCheck();
 
-        if(permissionCheck == PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(Part3Prob.this,"Audio 권한 있음.", Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(Part3Prob.this, "Audio 권한 없음.", Toast.LENGTH_LONG).show();
-            if (ActivityCompat.shouldShowRequestPermissionRationale(Part3Prob.this, Manifest.permission.RECORD_AUDIO)) {
-                Toast.makeText(Part3Prob.this, "Audio 권한 설명 필요함.", Toast.LENGTH_LONG).show();
-            } else {
-                ActivityCompat.requestPermissions(Part3Prob.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
-            }
-        }
+        ImageButton startRecord =findViewById(R.id.start_recording);
+        ImageButton stopRecord = findViewById(R.id.stop_recording);
+        ImageButton playRecord = findViewById(R.id.play_recording);
+        Button next=findViewById(R.id.btn_next);
 
-        record = (ImageButton)findViewById(R.id.record);
-        stop = (Button)findViewById(R.id.btn_submit);
-        play = (Button)findViewById(R.id.play);
-        next = (Button)findViewById(R.id.btn_next);
-
-        outputFile = getExternalCacheDir().getAbsolutePath();
-        outputFile += "/audiorecordtest.3gp";
-
-        record.setOnClickListener(new View.OnClickListener(){
+        startRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recordAudio();
+                stopRecord.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), android.R.color.holo_red_dark));
             }
         });
 
-        stop.setOnClickListener(new View.OnClickListener() {
+        stopRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopRecording();
+                stopAudio();
+                playRecord.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), android.R.color.holo_red_dark));
             }
         });
 
-        play.setOnClickListener(new View.OnClickListener() {
+        playRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playAudio();
-                Toast.makeText(Part3Prob.this,"재생 시작", Toast.LENGTH_SHORT).show();
+
+                if (file != null) playAudio();
             }
         });
 
@@ -130,60 +119,83 @@ public class Part3Prob extends AppCompatActivity {
                 finish();
             }
         });
-
         // for Countdown
         textViewCountDown = findViewById(R.id.tv_countdown);
         timeLeftInMillis = COUNTDOWN_IN_MILLIS;
         startCountDown();
     }
 
-    public void recordAudio(){
-        recorder = new MediaRecorder();
-        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        recorder.setOutputFile(outputFile);
+    private void recordAudio() {
 
-        try{
-            recorder.prepare();
+        ContentValues values = new ContentValues(4);
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, "No1."+idByANDROID_ID+getTime+"test.mp3");
+        values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
+        values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
-            Toast.makeText(Part3Prob.this,"녹음 시작", Toast.LENGTH_SHORT).show();
-
-        }catch (IOException e){
+        audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+        try {
+            file = getContentResolver().openFileDescriptor(audiouri, "w");
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        recorder.start();
-    }
 
-    public void stopRecording(){
-        if(recorder != null){
-            recorder.stop();
-            recorder.release();
-            recorder = null;
+        if (file != null) {
+            audioRecorder = new MediaRecorder();
+            audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
+            audioRecorder.setOutputFile(file.getFileDescriptor());
+            audioRecorder.setAudioChannels(1);
+            try {
+                audioRecorder.prepare();
+                audioRecorder.start();
+                Toast.makeText(this, "녹음 시작됨.", Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            Toast.makeText(Part3Prob.this,"녹음 중지", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void playAudio(){
+    private void stopAudio() {
+        if (audioRecorder != null) {
+            audioRecorder.stop();
+            audioRecorder.release();
+            audioRecorder = null;
+            Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void playAudio() {
         try {
             closePlayer();
 
             player = new MediaPlayer();
-            player.setDataSource(outputFile);
+            player.setDataSource(file.getFileDescriptor());
             player.prepare();
             player.start();
-        }catch (Exception e){
+
+            Toast.makeText(this, "재생 시작됨.", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closePlayer(){
-        if(player !=null){
+    public void closePlayer() {
+        if (player != null) {
             player.release();
             player = null;
         }
     }
+
+    public void permissionCheck(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1);
+        }
+    }
+
 
     private void startCountDown(){
         countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
@@ -198,7 +210,7 @@ public class Part3Prob extends AppCompatActivity {
                 timeLeftInMillis = 0;
                 updateCountDownText();
                 Toast.makeText(Part3Prob.this, "Time Over", Toast.LENGTH_LONG).show();
-                stopRecording();
+                stopAudio();
                 Intent intent = new Intent(Part3Prob.this, Part4Prob.class);
                 startActivity(intent);
                 finish();
