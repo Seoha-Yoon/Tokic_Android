@@ -22,6 +22,7 @@
             android:background="@drawable/wiget_box">
 
             <TextView
+                android:id="@+id/textView48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="37dp"
@@ -32,6 +33,17 @@
                 android:textSize="23dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/score_line_chart"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_mk_test"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
             <Button
                 android:id="@+id/btn_mk_test"
@@ -54,12 +66,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="340dp"
-            android:layout_height="230dp"
+            android:layout_height="330dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/wiget_box">
 
             <TextView
+                android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -71,6 +84,18 @@
                 android:textSize="23dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.github.mikephil.charting.charts.RadarChart
+                android:id="@+id/radar_chart"
+                android:layout_width="300dp"
+                android:layout_height="280dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="22dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
