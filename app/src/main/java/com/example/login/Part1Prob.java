@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.annotations.NotNull;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -284,7 +285,8 @@ public class Part1Prob extends AppCompatActivity {
 
 
     private void uploadAudio(){
-
+        // firebase
+        mStorage = FirebaseStorage.getInstance().getReference();
         StorageReference filepath = mStorage.child("Audio").child(outputUri);
 
 
