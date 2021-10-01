@@ -161,13 +161,10 @@ public class Part1Prob extends AppCompatActivity {
         values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
         values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
-
-        outputFile = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "No1."+idByANDROID_ID+getTime+"test.mp3";
-
-
-
-
-
+        // firebase에 저장되는 파일이름
+        outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
+        // local 경로 ?
+        outputFile = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + outputUri;
 
         audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
 
@@ -289,7 +286,7 @@ public class Part1Prob extends AppCompatActivity {
         mStorage = FirebaseStorage.getInstance().getReference();
         StorageReference filepath = mStorage.child("Audio").child(outputUri);
 
-
+        // local 경로
         Uri uri = Uri.fromFile(new File(outputFile));
 
         System.out.println(outputFile);
