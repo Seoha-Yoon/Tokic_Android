@@ -261,13 +261,15 @@ public class Part6Prob extends AppCompatActivity {
 
 
     private void submitfile() {
-
-        Uri file = Uri.fromFile(new File(outputFile));
-        StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
-        UploadTask uploadTask = riversRef.putFile(file);
+        for(int i=1; i<7; i++){
+            //여기 저장경로 이름만 수정해줘~~~
+            outputFile = "/sdcard/Music/TOKIC/" + "No"+Integer.toString(i)+"_"+idByANDROID_ID+"_test.mp3";
+            Uri file = Uri.fromFile(new File(outputFile));
+            StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
+            UploadTask uploadTask = riversRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
-        uploadTask.addOnFailureListener(new OnFailureListener() {
+            uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Toast.makeText(Part6Prob.this, "업로드 실패", Toast.LENGTH_SHORT).show();
@@ -275,10 +277,10 @@ public class Part6Prob extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(Part6Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Part6Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
             }
         });
-
+    }
     }
 
 }
