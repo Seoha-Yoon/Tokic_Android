@@ -212,8 +212,8 @@ public class Part1Prob extends AppCompatActivity {
             audioRecorder = null;
             Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
 
-            // firebase로 audio파일 저장하는 코드 -> 오류나면 이부분 주석처리할 것
-          //  uploadAudio();
+            // 점수 계산해서 firebase에 저장하는 코드
+            scoreCalculation();
 
         }
     }
@@ -284,61 +284,96 @@ public class Part1Prob extends AppCompatActivity {
         }
     }
 
-/*
-    private void uploadAudio(){
-        // firebase
-        mStorage = FirebaseStorage.getInstance().getReference();
-        StorageReference filepath = mStorage.child("Audio").child(outputUri);
 
-        // local 경로
-        Uri uri = Uri.fromFile(new File(outputFile));
+    private void scoreCalculation(){
+        // flask 통신
+        okHttpClient = new OkHttpClient();
 
-        // 안드로이드 local 경로(uri)에 있는 파일을 받아와서 firebase에 저장(filepath)
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        // POST
+        RequestBody formbody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("android_id",idByANDROID_ID)
+                .addFormDataPart("test_or_verify",test_or_verify)
+                .addFormDataPart("part",part)
+                .addFormDataPart("url", outputUri)
+                .addFormDataPart("date_time", getTime)
+                .build();
+
+        Request req = new Request.Builder()
+                .url(BASE_URL + "post")
+                .post(formbody)
+                .build();
+
+        okHttpClient.newCall(req).enqueue(new Callback() {
+
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                System.out.println(response.body().string());
+                System.out.println("여기야여기");
+            }
 
-                mProgress.dismiss();
-                Toast.makeText(Part1Prob.this,"Uploading Finished", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                System.out.println("fail");
+                System.out.println("실패했나");
 
-                // flask 통신
-                okHttpClient = new OkHttpClient();
-
-                // POST
-                RequestBody formbody = new MultipartBody.Builder()
-                        .setType(MultipartBody.FORM)
-                        .addFormDataPart("android_id",idByANDROID_ID)
-                        .addFormDataPart("test_or_verify",test_or_verify)
-                        .addFormDataPart("part",part)
-                        .addFormDataPart("url", outputUri)
-                        .addFormDataPart("date_time", getTime)
-                        .build();
-
-                Request req = new Request.Builder()
-                        .url(BASE_URL + "post")
-                        .post(formbody)
-                        .build();
-
-                okHttpClient.newCall(req).enqueue(new Callback() {
-
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        System.out.println(response.body().string());
-                        System.out.println("여기야여기");
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        System.out.println("fail");
-                        System.out.println("실패했나");
-
-                    }
-                });
             }
         });
 
+//
+//        // firebase
+//        mStorage = FirebaseStorage.getInstance().getReference();
+//        StorageReference filepath = mStorage.child("User").child(idByANDROID_ID).child(outputUri);
+//
+//        // local 경로
+//        Uri uri = Uri.fromFile(new File(outputFile));
+//
+//        // 안드로이드 local 경로(uri)에 있는 파일을 받아와서 firebase에 저장(filepath)
+//        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                mProgress.dismiss();
+//                Toast.makeText(Part1Prob.this,"Uploading Finished", Toast.LENGTH_SHORT).show();
+//
+//                // flask 통신
+//                okHttpClient = new OkHttpClient();
+//
+//                // POST
+//                RequestBody formbody = new MultipartBody.Builder()
+//                        .setType(MultipartBody.FORM)
+//                        .addFormDataPart("android_id",idByANDROID_ID)
+//                        .addFormDataPart("test_or_verify",test_or_verify)
+//                        .addFormDataPart("part",part)
+//                        .addFormDataPart("url", outputUri)
+//                        .addFormDataPart("date_time", getTime)
+//                        .build();
+//
+//                Request req = new Request.Builder()
+//                        .url(BASE_URL + "post")
+//                        .post(formbody)
+//                        .build();
+//
+//                okHttpClient.newCall(req).enqueue(new Callback() {
+//
+//                    @Override
+//                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                        System.out.println(response.body().string());
+//                        System.out.println("여기야여기");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                        System.out.println("fail");
+//                        System.out.println("실패했나");
+//
+//                    }
+//                });
+//            }
+//        });
+
     }
-*/
+
 
     private void submitfile() {
 
