@@ -163,9 +163,9 @@ public class Part1Prob extends AppCompatActivity {
 
         // firebase에 저장되는 파일이름
         outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
-        // local 경로 ?
+        // 안드로이드 local 경로 ?
         outputFile = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + outputUri;
-
+        // 안드로이드 local 경로 ?
         audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
 
 
@@ -289,10 +289,7 @@ public class Part1Prob extends AppCompatActivity {
         // local 경로
         Uri uri = Uri.fromFile(new File(outputFile));
 
-        System.out.println(outputFile);
-        System.out.println(uri);
-        System.out.println(filepath);
-
+        // 안드로이드 local 경로(uri)에 있는 파일을 받아와서 firebase에 저장(filepath)
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
