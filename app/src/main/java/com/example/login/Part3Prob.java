@@ -149,7 +149,7 @@ public class Part3Prob extends AppCompatActivity {
     private void recordAudio() {
 
         // firebase에 저장되는 파일이름
-        outputUri = "No3_"+idByANDROID_ID+getTime+"_test.mp3";
+        outputUri = "No3_"+idByANDROID_ID+Part1Prob.getTime+"_test.mp3";
 
         ContentValues values = new ContentValues(4);
         values.put(MediaStore.Audio.Media.DISPLAY_NAME, outputUri);
