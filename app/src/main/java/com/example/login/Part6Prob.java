@@ -72,6 +72,8 @@ public class Part6Prob extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
+    private String[] files;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -148,7 +150,7 @@ public class Part6Prob extends AppCompatActivity {
     private void recordAudio() {
 
         // firebase에 저장되는 파일이름
-        outputUri = "No6_"+idByANDROID_ID+getTime+"_test.mp3";
+        outputUri = "No6_"+idByANDROID_ID+Part1Prob.getTime+"_test.mp3";
 
         ContentValues values = new ContentValues(4);
         values.put(MediaStore.Audio.Media.DISPLAY_NAME, outputUri);
@@ -263,7 +265,7 @@ public class Part6Prob extends AppCompatActivity {
     private void submitfile() {
         for(int i=1; i<7; i++){
             //여기 저장경로 이름만 수정해줘~~~
-            outputFile = "/sdcard/Music/TOKIC/" + "No"+Integer.toString(i)+"_"+idByANDROID_ID+"_test.mp3";
+            outputFile = "/sdcard/Music/TOKIC/" + "No"+Integer.toString(i)+"_"+idByANDROID_ID+Part1Prob.getTime+"_test.mp3";
             Uri file = Uri.fromFile(new File(outputFile));
             StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
             UploadTask uploadTask = riversRef.putFile(file);

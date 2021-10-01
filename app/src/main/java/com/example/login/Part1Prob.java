@@ -77,9 +77,10 @@ public class Part1Prob extends AppCompatActivity {
 
     private String outputFile = null;
     private String outputUri = null;
+    public static String filename;
 
     // POST
-    String getTime;
+    public static String getTime;
 
     //Recording & Playing
     MediaPlayer player;
