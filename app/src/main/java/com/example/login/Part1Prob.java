@@ -30,6 +30,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -87,6 +89,7 @@ public class Part1Prob extends AppCompatActivity {
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
+
     @Override
     public void onBackPressed() {
     }
@@ -114,7 +117,7 @@ public class Part1Prob extends AppCompatActivity {
         ImageButton stopRecord = findViewById(R.id.stop_recording);
         ImageButton playRecord = findViewById(R.id.play_recording);
         Button next=findViewById(R.id.btn_next);
-        Button submit=findViewById(R.id.btn_submit);
+
 
         startRecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +152,7 @@ public class Part1Prob extends AppCompatActivity {
             }
         });
 
+        Button submit=findViewById(R.id.btn_submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +162,7 @@ public class Part1Prob extends AppCompatActivity {
 
 
         //for Countdown
-        Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
         textViewCountDown = findViewById(R.id.tv_countdown);
         timeLeftInMillis = COUNTDOWN_IN_MILLIS;
         startCountDown();
@@ -197,7 +201,7 @@ public class Part1Prob extends AppCompatActivity {
             try {
                 audioRecorder.prepare();
                 audioRecorder.start();
-                Toast.makeText(this, "녹음 시작됨.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "녹음 시작됨.", Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -210,7 +214,7 @@ public class Part1Prob extends AppCompatActivity {
             audioRecorder.stop();
             audioRecorder.release();
             audioRecorder = null;
-            Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
 
             // 점수 계산해서 firebase에 저장하는 코드
             scoreCalculation();
@@ -228,7 +232,7 @@ public class Part1Prob extends AppCompatActivity {
             player.prepare();
             player.start();
 
-            Toast.makeText(this, "재생 시작됨.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "재생 시작됨.", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
