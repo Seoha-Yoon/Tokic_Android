@@ -6,14 +6,18 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -83,10 +87,44 @@ public class Part1Prob extends AppCompatActivity {
     public void onBackPressed() {
     }
 
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
+
+
+        // firebase에 저장되는 파일이름
+        outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
+
+        ContentValues values = new ContentValues(4);
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, outputUri);
+        values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
+        values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
+
+
+        audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+
+
+        System.out.println("이거 밑에꺼 되는지 확인해줘");
+        System.out.println(getRealPathFromURI(getApplicationContext(), audiouri));
+
+
+
 
         // 안드로이드폰 ID
         idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -94,19 +132,13 @@ public class Part1Prob extends AppCompatActivity {
         // 현재 날짜
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
-        SimpleDateFormat simpleDate = new SimpleDateFormat("/yyyyMMdd_hhmmss");
+        SimpleDateFormat simpleDate = new SimpleDateFormat("_yyyyMMdd_hhmmss");
         getTime = simpleDate.format(mDate);
 
         permissionCheck();
 
-//        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath();   // 내부저장소에 저장되는 경로
-//
-//        outputUri = getTime;
-//        outputUri += "_test_part1_";
-//        outputUri += idByANDROID_ID;
-//        outputUri += ".pcm";
-//
-//        outputFile += outputUri;
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath();   // 내부저장소에 저장되는 경로
+        System.out.println(outputFile);
 
         ImageButton startRecord =findViewById(R.id.start_recording);
         ImageButton stopRecord = findViewById(R.id.stop_recording);
@@ -156,6 +188,7 @@ public class Part1Prob extends AppCompatActivity {
 
     private void recordAudio() {
 
+
         // firebase에 저장되는 파일이름
         outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
 
@@ -168,7 +201,6 @@ public class Part1Prob extends AppCompatActivity {
         outputFile = "Music/TOKIC/" + outputUri;
 
         audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
-
 
         try {
             file = getContentResolver().openFileDescriptor(audiouri, "w");
@@ -183,13 +215,6 @@ public class Part1Prob extends AppCompatActivity {
             audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
             audioRecorder.setOutputFile(file.getFileDescriptor());
             audioRecorder.setAudioChannels(1);
-
-            System.out.println("ㅇㅕ기야 여기 ");
-            System.out.println(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-            System.out.println(values);
-            System.out.println(audiouri);
-            System.out.println(file.getFileDescriptor());
-
 
             try {
                 audioRecorder.prepare();
