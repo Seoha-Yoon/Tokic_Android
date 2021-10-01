@@ -156,16 +156,17 @@ public class Part1Prob extends AppCompatActivity {
 
     private void recordAudio() {
 
+        // firebase에 저장되는 파일이름
+        outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
+
         ContentValues values = new ContentValues(4);
-        values.put(MediaStore.Audio.Media.DISPLAY_NAME, "No1."+idByANDROID_ID+getTime+"test.mp3");
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, outputUri);
         values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
         values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
-        // firebase에 저장되는 파일이름
-        outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
         // 안드로이드 local 경로 ?
-        outputFile = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + outputUri;
-        // 안드로이드 local 경로 ?
+        outputFile = "Music/TOKIC/" + outputUri;
+
         audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
 
 
