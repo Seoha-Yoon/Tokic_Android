@@ -280,7 +280,6 @@ public class Part1Prob extends AppCompatActivity {
         // Start Audio Recording
         if(seconds == 20) {
             Toast.makeText(Part1Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
-            // recordAudio();
         }
     }
 
