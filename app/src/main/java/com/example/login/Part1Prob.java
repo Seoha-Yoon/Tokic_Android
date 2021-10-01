@@ -153,6 +153,9 @@ public class Part1Prob extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 submitfile();
+
+                // 점수 계산해서 firebase에 저장하는 코드
+                scoreCalculation();
             }
         });
 
@@ -211,9 +214,6 @@ public class Part1Prob extends AppCompatActivity {
             audioRecorder.release();
             audioRecorder = null;
             Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
-
-            // 점수 계산해서 firebase에 저장하는 코드
-            scoreCalculation();
 
         }
     }
