@@ -87,44 +87,10 @@ public class Part1Prob extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    public String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part1_prob);
-
-
-        // firebase에 저장되는 파일이름
-        outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
-
-        ContentValues values = new ContentValues(4);
-        values.put(MediaStore.Audio.Media.DISPLAY_NAME, outputUri);
-        values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
-        values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
-
-
-        audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
-
-
-        System.out.println("이거 밑에꺼 되는지 확인해줘");
-        System.out.println(getRealPathFromURI(getApplicationContext(), audiouri));
-
-
-
 
         // 안드로이드폰 ID
         idByANDROID_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
