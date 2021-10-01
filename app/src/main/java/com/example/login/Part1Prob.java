@@ -1,5 +1,6 @@
 package com.example.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -27,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.storage.FirebaseStorage;
@@ -83,6 +85,8 @@ public class Part1Prob extends AppCompatActivity {
     Uri audiouri;
     ParcelFileDescriptor file;
 
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
     @Override
     public void onBackPressed() {
     }
@@ -110,6 +114,7 @@ public class Part1Prob extends AppCompatActivity {
         ImageButton stopRecord = findViewById(R.id.stop_recording);
         ImageButton playRecord = findViewById(R.id.play_recording);
         Button next=findViewById(R.id.btn_next);
+        Button submit=findViewById(R.id.btn_submit);
 
         startRecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +149,14 @@ public class Part1Prob extends AppCompatActivity {
             }
         });
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitfile();
+            }
+        });
+
+
         //for Countdown
         Toast.makeText(Part1Prob.this,"응답을 준비하세요.",Toast.LENGTH_SHORT).show();
         textViewCountDown = findViewById(R.id.tv_countdown);
@@ -154,7 +167,6 @@ public class Part1Prob extends AppCompatActivity {
 
     private void recordAudio() {
 
-
         // firebase에 저장되는 파일이름
         outputUri = "No1."+idByANDROID_ID+getTime+"test.mp3";
 
@@ -164,8 +176,8 @@ public class Part1Prob extends AppCompatActivity {
         values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
         // 안드로이드 local 경로 ?
-        outputFile = "Music/TOKIC/" + outputUri;
-
+        outputFile = "/sdcard/Music/TOKIC/" + outputUri;
+        //outputFile = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + outputUri;
         audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
 
         try {
@@ -201,7 +213,7 @@ public class Part1Prob extends AppCompatActivity {
             Toast.makeText(this, "녹음 중지됨.", Toast.LENGTH_SHORT).show();
 
             // firebase로 audio파일 저장하는 코드 -> 오류나면 이부분 주석처리할 것
-            uploadAudio();
+          //  uploadAudio();
 
         }
     }
@@ -272,7 +284,7 @@ public class Part1Prob extends AppCompatActivity {
         }
     }
 
-
+/*
     private void uploadAudio(){
         // firebase
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -326,8 +338,28 @@ public class Part1Prob extends AppCompatActivity {
         });
 
     }
+*/
 
+    private void submitfile() {
 
+        Uri file = Uri.fromFile(new File(outputFile));
+        StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
+        UploadTask uploadTask = riversRef.putFile(file);
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(Part1Prob.this, "업로드 실패", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(Part1Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+}
 
 }
 
