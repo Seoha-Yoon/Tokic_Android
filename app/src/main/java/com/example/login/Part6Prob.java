@@ -26,11 +26,10 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +38,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class Part6Prob extends AppCompatActivity {
     // countdown
@@ -59,6 +64,8 @@ public class Part6Prob extends AppCompatActivity {
 
     // POST
     String getTime;
+    private static final Object BASE_URL = "http://3.139.81.205:5000/";
+    public static final String test_or_verify = "test";
 
     //Recording & Playing
     MediaPlayer player;
@@ -263,26 +270,74 @@ public class Part6Prob extends AppCompatActivity {
 
 
     private void submitfile() {
-        for(int i=1; i<7; i++){
-            //여기 저장경로 이름만 수정해줘~~~
-            outputFile = "/sdcard/Music/TOKIC/" + "No"+Integer.toString(i)+"_"+idByANDROID_ID+Part1Prob.getTime+"_test.mp3";
-            Uri file = Uri.fromFile(new File(outputFile));
-            StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
-            UploadTask uploadTask = riversRef.putFile(file);
+            for(int i=1; i<7; i++){
+                //여기 저장경로 이름만 수정해줘~~~
+                outputFile = "/sdcard/Music/TOKIC/" + "No"+Integer.toString(i)+"_"+idByANDROID_ID+Part1Prob.getTime+"_test.mp3";
+                Uri file = Uri.fromFile(new File(outputFile));
+                StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
+                UploadTask uploadTask = riversRef.putFile(file);
 
-        // Register observers to listen for when the download is done or if it fails
-            uploadTask.addOnFailureListener(new OnFailureListener() {
+                // Register observers to listen for when the download is done or if it fails
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Toast.makeText(Part6Prob.this, "업로드 실패", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    //Toast.makeText(Part6Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void scoreCalculation(){
+        // flask 통신
+        okHttpClient = new OkHttpClient();
+
+        String start_time = Part1Prob.getTime;
+
+        // POST
+        RequestBody formbody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("android_id",idByANDROID_ID)
+                .addFormDataPart("test_or_verify",test_or_verify)
+                .addFormDataPart("part1_url", "User/"+idByANDROID_ID+'/' + "No1"+"_"+idByANDROID_ID+start_time+"_test.mp3")
+                .addFormDataPart("part2_url", "User/"+idByANDROID_ID+'/' + "No2"+"_"+idByANDROID_ID+start_time+"_test.mp3")
+                .addFormDataPart("part3_url", "User/"+idByANDROID_ID+'/' + "No3"+"_"+idByANDROID_ID+start_time+"_test.mp3")
+                .addFormDataPart("part4_url", "User/"+idByANDROID_ID+'/' + "No4"+"_"+idByANDROID_ID+start_time+"_test.mp3")
+                .addFormDataPart("part5_url", "User/"+idByANDROID_ID+'/' + "No5"+"_"+idByANDROID_ID+start_time+"_test.mp3")
+                .addFormDataPart("part6_url", "User/"+idByANDROID_ID+'/' + "No6"+"_"+idByANDROID_ID+start_time+"_test.mp3")
+
+                .addFormDataPart("date_time", getTime)
+                .build();
+
+        Request req = new Request.Builder()
+                .url(BASE_URL + "post")
+                .post(formbody)
+                .build();
+
+        okHttpClient.newCall(req).enqueue(new Callback() {
+
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(Part6Prob.this, "업로드 실패", Toast.LENGTH_SHORT).show();
+            public void onResponse(@com.google.firebase.database.annotations.NotNull Call call, @com.google.firebase.database.annotations.NotNull Response response) throws IOException {
+                System.out.println(response.body().string());
+                System.out.println("여기야여기");
             }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                //Toast.makeText(Part6Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+            public void onFailure(@com.google.firebase.database.annotations.NotNull Call call, @NotNull IOException e) {
+                System.out.println("fail");
+                System.out.println("실패했나");
+
             }
         });
+
+
+
     }
-    }
+
+
 
 }
