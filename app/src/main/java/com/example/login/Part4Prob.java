@@ -24,10 +24,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -61,6 +66,12 @@ public class Part4Prob extends AppCompatActivity {
     Uri audiouri;
     ParcelFileDescriptor file;
 
+    private String outputFile = null;
+    private String outputUri = null;
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -76,7 +87,7 @@ public class Part4Prob extends AppCompatActivity {
         // 현재 날짜
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
-        SimpleDateFormat simpleDate = new SimpleDateFormat("/yyyyMMdd_hhmmss");
+        SimpleDateFormat simpleDate = new SimpleDateFormat("_yyyyMMdd_hhmmss");
         getTime = simpleDate.format(mDate);
 
         permissionCheck();
@@ -119,6 +130,15 @@ public class Part4Prob extends AppCompatActivity {
             }
         });
 
+        Button submit=findViewById(R.id.btn_submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //submitfile();
+            }
+        });
+
+
         // for Countdown
         textViewCountDown = findViewById(R.id.tv_countdown);
         timeLeftInMillis = COUNTDOWN_IN_MILLIS;
@@ -127,12 +147,19 @@ public class Part4Prob extends AppCompatActivity {
 
     private void recordAudio() {
 
+        // firebase에 저장되는 파일이름
+        outputUri = "No4_"+idByANDROID_ID+Part1Prob.getTime+"_test.mp3";
+
         ContentValues values = new ContentValues(4);
-        values.put(MediaStore.Audio.Media.DISPLAY_NAME, "No4."+idByANDROID_ID+getTime+"test.mp3");
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, outputUri);
         values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3");
         values.put(MediaStore.Audio.Media.RELATIVE_PATH, "Music/TOKIC/");
 
+        // 안드로이드 local 경로 ?
+        outputFile = "/sdcard/Music/TOKIC/" + outputUri;
+        //outputFile = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + outputUri;
         audiouri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+
         try {
             file = getContentResolver().openFileDescriptor(audiouri, "w");
         } catch (FileNotFoundException e) {
@@ -227,10 +254,29 @@ public class Part4Prob extends AppCompatActivity {
 
         // Start Audio Recording
         if(seconds == 20) {
-            Toast.makeText(Part4Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
-            recordAudio();
+          //  Toast.makeText(Part4Prob.this, "응답을 시작하세요!", Toast.LENGTH_SHORT).show();
+           // recordAudio();
         }
     }
 
+    private void submitfile() {
 
+        Uri file = Uri.fromFile(new File(outputFile));
+        StorageReference riversRef = storageRef.child("User/"+idByANDROID_ID+'/'+file.getLastPathSegment());
+        UploadTask uploadTask = riversRef.putFile(file);
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(Part4Prob.this, "업로드 실패", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(Part4Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 }
