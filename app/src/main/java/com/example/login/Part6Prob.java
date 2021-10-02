@@ -144,6 +144,7 @@ public class Part6Prob extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 submitfile();
+                scoreCalculation();
             }
         });
 
