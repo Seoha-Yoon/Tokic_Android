@@ -129,6 +129,7 @@ public class Part6Prob extends AppCompatActivity {
             }
         });
 
+        /*
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +138,7 @@ public class Part6Prob extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        });
+        });*/
 
         Button submit=findViewById(R.id.btn_submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +146,10 @@ public class Part6Prob extends AppCompatActivity {
             public void onClick(View v) {
                 submitfile();
                 scoreCalculation();
+                countDownTimer.cancel();
+                Intent intent = new Intent(Part6Prob.this, TestResultActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
