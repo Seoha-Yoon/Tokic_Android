@@ -145,6 +145,7 @@
         android:backgroundTint="@color/submit_box"
         android:text="Submit"
         android:textSize="20dp"
+        android:visibility="invisible"
         android:fontFamily="@font/roboto_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -37,11 +37,11 @@ public class TestResultActivity extends AppCompatActivity {
         // 모변 답변 유사도
         barChart.addBar(new BarModel(74f, 0xFFC6A9FF));
         // 발음
-        barChart.addBar(new BarModel(23f, 0xFFFFCF86));
+        barChart.addBar(new BarModel(83f, 0xFFFFCF86));
         // 유창성
         barChart.addBar(new BarModel(74f, 0xFF74C7E5));
         // 표현력
-        barChart.addBar(new BarModel(96f, 0xFFA2E0C1));
+        barChart.addBar(new BarModel(56f, 0xFFA2E0C1));
         // 문장의 적절성
         barChart.addBar(new BarModel(96f, 0xFFD9A5B5));
 
