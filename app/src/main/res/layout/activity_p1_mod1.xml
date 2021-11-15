@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
+    android:orientation="vertical"
     tools:context=".P1_mod_1">
 
 
@@ -29,20 +29,22 @@
             android:id="@+id/textView22"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:gravity="center"
             android:text="단어 빈칸 채우기"
-            android:fontFamily="@font/roboto_bold"
             android:textColor="@color/black"
-            android:textSize="25dp" />
+            android:textSize="23dp" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
-            android:layout_height="73dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
             android:text="한 문장씩 따라 읽으며 발음을 연습한 뒤,\n빈칸을 채워넣은 문장을 녹음하여 제출하세요"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="12dp" />
 
 
     </LinearLayout>
@@ -50,28 +52,37 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:layout_gravity="center">
+        android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_answer"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:text="전체 문장 보기" />
+            android:layout_width="135dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/click_change"
+            android:enabled="true"
+            android:text="전체 문장 보기"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_blank"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:text="빈칸 만들기" />
+            android:layout_width="135dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/click_change"
+            android:textColor="@color/white"
+            android:enabled="true"
+            android:text="빈칸 만들기"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frame_fillblank"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </FrameLayout>
+        android:layout_height="wrap_content"></FrameLayout>
 
 </LinearLayout>

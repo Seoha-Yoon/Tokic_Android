@@ -3,17 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/bg_rounded.xml" value="0.12543859649122807" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/click_change.xml" value="0.1" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/clicked_radius_btn.xml" value="0.12543859649122807" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12543859649122807" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/module_selection.xml" value="0.12543859649122807" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/part_selection.xml" value="0.1324561403508772" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/radius.xml" value="0.15657894736842104" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/unclicked_radius_btn.xml" value="0.1600877192982456" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/drawable/wiget_box.xml" value="0.12543859649122807" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_main.xml" value="0.1118421052631579" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_mocktest_home.xml" value="0.264" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod1.xml" value="0.2" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod1_answer.xml" value="0.2" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod1_blank.xml" value="0.264" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod2.xml" value="0.2" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod2_fail.xml" value="0.264" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod3.xml" value="0.14298245614035088" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_p1_mod3_result.xml" value="0.11885964912280701" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part1_prob.xml" value="0.2" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part2_prob.xml" value="0.2" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part3_prob.xml" value="0.11885964912280701" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part4_prob.xml" value="0.144" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part5_prob.xml" value="0.11885964912280701" />
-        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part6_prob.xml" value="0.11885964912280701" />
-        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/p1_module.xml" value="0.11885964912280701" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/activity_part6_prob.xml" value="0.4" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/fragment0.xml" value="0.536" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/fragment1.xml" value="0.1" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/p1_introduction.xml" value="0.2" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/p1_main.xml" value="0.264" />
+        <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/p1_module.xml" value="0.2" />
         <entry key="..\:/Users/agka0/AndroidStudioProjects/Login/app/src/main/res/layout/test_result_pg.xml" value="0.2" />
       </map>
     </option>

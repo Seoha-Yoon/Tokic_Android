@@ -10,7 +10,7 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="12dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
@@ -26,11 +26,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="15dp"
-        android:background="#80FFC107"
         android:fontFamily="@font/roboto_bold"
         android:layout_gravity="center"
         android:text="예시 문항"
-        android:textColor="@color/black"
+        android:textColor="#7EB0BD"
         android:textStyle="bold"
         android:textSize="20dp" />
 
@@ -42,7 +41,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         android:layout_gravity="center"
-        android:textSize="18dp"
+        android:textSize="14dp"
         android:text="취미가 뭐예요? 그 취미에 대해 이야기하세요."
         android:textColor="@color/black"/>
 
@@ -53,10 +52,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
-        android:background="#80FFC107"
         android:layout_gravity="center"
         android:text="모범 답안"
-        android:textColor="@color/black"
+        android:textColor="#7EB0BD"
         android:textStyle="bold"
         android:textSize="20dp" />
 
@@ -73,6 +71,6 @@
         android:text="제 취미는 영화 보기예요. 저는 시간 있을 때 영화관에 가요. 집에서도 영화를 자주 봐요. 저는 재미있는 영화를 좋아해요. 슬픈 영화도 잘 봐요. 저는 이번 주말에 친구와 함께 영화관에 갈 거예요."
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18dp" />
+        android:textSize="14dp" />
 
 </LinearLayout>

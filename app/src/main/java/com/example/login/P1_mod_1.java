@@ -24,6 +24,8 @@ public class P1_mod_1 extends AppCompatActivity {
         btn_blank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_blank.setBackgroundResource(R.drawable.clicked_radius_btn);
+                btn_answer.setBackgroundResource(R.drawable.unclicked_radius_btn);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 P1_mod_1_blank p1_mod_1_blank = new P1_mod_1_blank();
 
@@ -35,6 +37,8 @@ public class P1_mod_1 extends AppCompatActivity {
         btn_answer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_answer.setBackgroundResource(R.drawable.clicked_radius_btn);
+                btn_blank.setBackgroundResource(R.drawable.unclicked_radius_btn);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 P1_mod_1_answer p1_mod_1_answer = new P1_mod_1_answer();
 

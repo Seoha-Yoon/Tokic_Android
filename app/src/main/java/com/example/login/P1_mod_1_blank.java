@@ -308,7 +308,7 @@ public class P1_mod_1_blank extends Fragment {
                 SpannableString str = new SpannableString(Character.toString(matches.get(0).charAt(i)));
 
                 if(ans.charAt(j) == matches.get(0).charAt(i)){
-                    str.setSpan(new ForegroundColorSpan(Color.BLACK), 0, str.length(), 0);
+                    str.setSpan(new ForegroundColorSpan(Color.BLUE), 0, str.length(), 0);
                 }
                 else {
                     str.setSpan(new ForegroundColorSpan(Color.RED), 0, str.length(), 0);

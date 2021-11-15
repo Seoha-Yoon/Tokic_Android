@@ -8,7 +8,8 @@ android:layout_marginRight="15dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,10 +20,14 @@ android:layout_marginRight="15dp">
         <TextView
             android:id="@+id/blank1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:paddingLeft="7.5dp"
+            android:gravity="center_vertical"
+            android:background="#437EB0BD"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/black"
-            android:textSize="22dp" />
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -31,8 +36,8 @@ android:layout_marginRight="15dp">
 
             <ImageButton
                 android:id="@+id/stt1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/recordmic" />
@@ -51,10 +56,14 @@ android:layout_marginRight="15dp">
         <TextView
             android:id="@+id/blank2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:paddingLeft="7.5dp"
+            android:gravity="center_vertical"
+            android:background="#437EB0BD"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/black"
-            android:textSize="22dp" />
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -63,8 +72,8 @@ android:layout_marginRight="15dp">
 
             <ImageButton
                 android:id="@+id/stt2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/recordmic" />
@@ -80,23 +89,27 @@ android:layout_marginRight="15dp">
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/blank3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="22dp" />
+            <TextView
+                android:id="@+id/blank3"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:paddingLeft="7.5dp"
+                android:gravity="center_vertical"
+                android:background="#437EB0BD"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
-        <LinearLayout
+            <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/recordmic" />
@@ -115,10 +128,14 @@ android:layout_marginRight="15dp">
         <TextView
             android:id="@+id/blank4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:paddingLeft="7.5dp"
+            android:gravity="center_vertical"
+            android:background="#437EB0BD"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/black"
-            android:textSize="22dp" />
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -127,8 +144,8 @@ android:layout_marginRight="15dp">
 
             <ImageButton
                 android:id="@+id/stt4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/recordmic" />
@@ -147,10 +164,14 @@ android:layout_marginRight="15dp">
         <TextView
             android:id="@+id/blank5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:paddingLeft="7.5dp"
+            android:gravity="center_vertical"
+            android:background="#437EB0BD"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/black"
-            android:textSize="22dp" />
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -159,8 +180,8 @@ android:layout_marginRight="15dp">
 
             <ImageButton
                 android:id="@+id/stt5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/recordmic" />
@@ -176,23 +197,29 @@ android:layout_marginRight="15dp">
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/blank6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="22dp" />
+            <TextView
+                android:id="@+id/blank6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#437EB0BD"
+                android:gravity="center_vertical"
+                android:paddingLeft="7.5dp"
+                android:paddingTop="7.5dp"
+                android:paddingBottom="7.5dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
-        <LinearLayout
+            <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/stt6"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/recordmic" />
