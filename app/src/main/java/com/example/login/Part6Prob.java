@@ -145,7 +145,7 @@ public class Part6Prob extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 submitfile();
-                scoreCalculation();
+
                 countDownTimer.cancel();
                 Intent intent = new Intent(Part6Prob.this, TestResultActivity.class);
                 startActivity(intent);
@@ -292,57 +292,13 @@ public class Part6Prob extends AppCompatActivity {
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //Toast.makeText(Part6Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Part6Prob.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+                    System.out.println("업로드 성공");
                 }
             });
         }
     }
 
-    private void scoreCalculation(){
-        // flask 통신
-        okHttpClient = new OkHttpClient();
-
-        String start_time = Part1Prob.getTime;
-
-        // POST
-        RequestBody formbody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("android_id",idByANDROID_ID)
-                .addFormDataPart("test_or_verify",test_or_verify)
-                .addFormDataPart("part1_url", "User/"+idByANDROID_ID+'/' + "No1"+"_"+idByANDROID_ID+start_time+"_test.mp3")
-                .addFormDataPart("part2_url", "User/"+idByANDROID_ID+'/' + "No2"+"_"+idByANDROID_ID+start_time+"_test.mp3")
-                .addFormDataPart("part3_url", "User/"+idByANDROID_ID+'/' + "No3"+"_"+idByANDROID_ID+start_time+"_test.mp3")
-                .addFormDataPart("part4_url", "User/"+idByANDROID_ID+'/' + "No4"+"_"+idByANDROID_ID+start_time+"_test.mp3")
-                .addFormDataPart("part5_url", "User/"+idByANDROID_ID+'/' + "No5"+"_"+idByANDROID_ID+start_time+"_test.mp3")
-                .addFormDataPart("part6_url", "User/"+idByANDROID_ID+'/' + "No6"+"_"+idByANDROID_ID+start_time+"_test.mp3")
-
-                .addFormDataPart("date_time", getTime)
-                .build();
-
-        Request req = new Request.Builder()
-                .url(BASE_URL + "post")
-                .post(formbody)
-                .build();
-
-        okHttpClient.newCall(req).enqueue(new Callback() {
-
-            @Override
-            public void onResponse(@com.google.firebase.database.annotations.NotNull Call call, @com.google.firebase.database.annotations.NotNull Response response) throws IOException {
-                System.out.println(response.body().string());
-                System.out.println("여기야여기");
-            }
-
-            @Override
-            public void onFailure(@com.google.firebase.database.annotations.NotNull Call call, @NotNull IOException e) {
-                System.out.println("fail");
-                System.out.println("실패했나");
-
-            }
-        });
-
-
-
-    }
 
 
 
