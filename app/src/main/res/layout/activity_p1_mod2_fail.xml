@@ -31,7 +31,7 @@
         android:layout_gravity="center"
         android:text="오답입니다!"
         android:textColor="@color/black"
-        android:textSize="45dp"/>
+        android:textSize="35dp"/>
 
     <TextView
         android:id="@+id/textView47"
@@ -40,7 +40,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="조금 더 연습하세요"
-        android:textSize="25dp" />
+        android:textSize="20dp" />
 
     <ImageButton
         android:id="@+id/btn_tryagain"
@@ -52,15 +52,6 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/tryagain" />
 
-    <ImageButton
-        android:id="@+id/btn_solution"
-        android:layout_width="112dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:background="@drawable/solution"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/solution" />
 
     <FrameLayout
         android:layout_width="match_parent"

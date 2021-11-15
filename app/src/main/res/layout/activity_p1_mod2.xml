@@ -33,18 +33,19 @@
             android:gravity="center"
             android:text="문장 순서대로 배열하기"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="23dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
-            android:layout_height="73dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
             android:text="다음 문장을 순서대로 구성하시오."
-            android:layout_marginBottom="5dp"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="12dp" />
 
     </LinearLayout>
 
@@ -90,6 +91,7 @@
             android:id="@+id/shuffle_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <Button
@@ -132,32 +134,42 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
-        <EditText
-            android:id="@+id/note"
-            android:layout_width="120dp"
-            android:layout_height="68dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="40dp" />
+            <EditText
+                android:id="@+id/note"
+                android:layout_marginLeft="45dp"
+                android:layout_width="85dp"
+                android:layout_height="68dp"
+                android:textSize="30dp" />
 
-        <Button
-            android:id="@+id/btn_eraser"
-            android:layout_width="65dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:text="지우기"
-            android:textColor="@android:color/black"
-            android:textSize="10dp" />
+            <Button
+                android:id="@+id/btn_eraser"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/white"
+                android:text="←"
+                android:textColor="@android:color/black"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btn_sbm"
-            android:layout_width="143dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
-            android:layout_marginTop="30dp"
             android:layout_gravity="center"
-            android:text="제출하기" />
+            android:backgroundTint="@color/submit_box"
+            android:layout_marginTop="40dp"
+            android:text="Submit"
+            android:textSize="15dp" />
 
     </LinearLayout>
 

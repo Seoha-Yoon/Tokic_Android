@@ -31,8 +31,10 @@ public class P1_main extends AppCompatActivity {
         btn_module.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_module.setBackgroundColor(Color.GRAY);
+                btn_module.setBackgroundColor(Color.parseColor("#7EB0BD"));
+                btn_module.setTextColor(Color.WHITE);
                 btn_intro.setBackgroundColor(Color.WHITE);
+                btn_intro.setTextColor(Color.BLACK);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 P1_module p1_module = new P1_module();
 
@@ -46,8 +48,10 @@ public class P1_main extends AppCompatActivity {
         btn_intro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_intro.setBackgroundColor(Color.GRAY);
+                btn_intro.setBackgroundColor(Color.parseColor("#7EB0BD"));
+                btn_intro.setTextColor(Color.WHITE);
                 btn_module.setBackgroundColor(Color.WHITE);
+                btn_module.setTextColor(Color.BLACK);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 P1_intro p1_introduction = new P1_intro();
 

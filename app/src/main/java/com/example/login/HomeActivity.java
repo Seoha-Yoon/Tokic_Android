@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +48,7 @@ import okhttp3.Response;
 public class HomeActivity extends AppCompatActivity {
 
     private static final String BASE_URL = "http://3.139.81.205:5000/";  // aws public IPv4
-    Button btn_test, btn_part;
+    ImageButton btn_test,btn_part;
 
 
     @Override
@@ -55,8 +56,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btn_test = (Button)findViewById(R.id.test_start_button);
-        btn_part = (Button)findViewById(R.id.prac_start_button);
+        btn_test = (ImageButton)findViewById(R.id.test_start_button);
+        btn_part = (ImageButton)findViewById(R.id.prac_start_button);
 
         btn_test.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, MockTestActivity.class);

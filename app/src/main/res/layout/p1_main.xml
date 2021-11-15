@@ -22,7 +22,7 @@
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
-                    android:layout_height="234dp"
+                    android:layout_height="200dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/part_image"
                     tools:layout_editor_absoluteY="1062dp" />
@@ -44,49 +44,30 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:text="Part 1. 질문에 대답하기"
-                android:fontFamily="@font/roboto_bold"
+                android:text="Part 1. 질문에 대답하기\n:취미가 뭐에요?"
                 android:textColor="@color/black"
-                android:textSize="24dp" />
+                android:textStyle="bold"
+                android:textSize="26dp" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
-                android:text="취미가 뭐에요?"
-                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/textView_P1_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto_thin"
-                android:text="일상생활에서 자주 만나게 되는 상황에서 간단한 질문을 듣고 적절하게 대답하는 초급 문제입니다."
-                android:textSize="16dp"/>
-
-            <TextView
-                android:id="@+id/textView_P1_course"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Course"
-                android:textSize="22dp"
-                android:textColor="@color/black"/>
+                android:text="일상에서 마주하는 상황 속에서\n 간단한 질문을 듣고 대답하는 초급 문제입니다."
+                android:textSize="12dp"/>
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
@@ -99,8 +80,8 @@
                     android:enabled="true"
                     android:fontFamily="@font/roboto_bold"
                     android:text="학습선택"
-                    android:textColor="@color/black"
-                    app:backgroundTint="#FFFFFF" />
+                    android:textColor="@color/white"
+                    app:backgroundTint="#7EB0BD" />
 
                 <Button
                     android:id="@+id/btn_goto_intro"
@@ -111,8 +92,8 @@
                     android:enabled="true"
                     android:fontFamily="@font/roboto_bold"
                     android:text="공부방법"
-                    android:textColor="@color/black"
-                    app:backgroundTint="#FFFFFF" />
+                    android:textColor="@color/white"
+                    app:backgroundTint="#7EB0BD" />
 
             </LinearLayout>
 

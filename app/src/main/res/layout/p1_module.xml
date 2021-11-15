@@ -8,75 +8,82 @@
 
 
         <TableLayout
-            android:layout_width="66dp"
-            android:layout_height="240dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btn_play1"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:background="@drawable/play_button" />
+                        <ImageButton
+                            android:id="@+id/btn_play1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/play_button"
+                            android:scaleType="fitCenter" />
 
-                <ImageButton
-                    android:id="@+id/btn_play2"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/play_button" />
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="   단어 빈칸 채우기"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+                </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/btn_play3"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/play_button" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/btn_play2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/play_button"
+                            android:scaleType="fitCenter" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="   문장 순서대로 배열하기"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                        <ImageButton
+                            android:id="@+id/btn_play3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/play_button"
+                            android:scaleType="fitCenter" />
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="   확인테스트"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+                </LinearLayout>
         </TableLayout>
 
-        <TableLayout
-            android:layout_width="310dp"
-            android:layout_height="240dp">
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="단어 빈칸 채우기"
-                    android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="문장 순서대로 배열하기"
-                    android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="확인 테스트"
-                    android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-
-        </TableLayout>
 </LinearLayout>
