@@ -16,25 +16,34 @@
         android:gravity="center"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-    <Button
-        android:id="@+id/btn_score_calculate"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:backgroundTint="@color/submit_box"
-        android:text="Submit"
-        android:textSize="20dp"
-        android:fontFamily="@font/roboto_bold" />
+        <Button
+            android:id="@+id/btn_score_calculate"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/submit_box"
+            android:text="제출하기"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold" />
+
+        <Button
+            android:id="@+id/btn_score_show"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/btn_color_mint"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center"
+            android:text="결과보기"
+            android:textSize="20dp" />
+    </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btn_score_show"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:backgroundTint="@color/btn_color_mint"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Show"
-        android:textSize="20dp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -99,7 +108,16 @@
                 android:padding="20dp"/>
 
 
+
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </FrameLayout>
 
 

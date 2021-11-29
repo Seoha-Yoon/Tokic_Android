@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,11 +39,13 @@ public class TestResultActivity extends AppCompatActivity {
 
     VerticalBarChart barChart;
 
+    private ProgressBar pgsBar;
     // upload video
     private String idByANDROID_ID;
+    boolean success=false;
 
     // POST
-    private static final Object BASE_URL = "http://3.145.8.27:5000/";
+    private static final Object BASE_URL = "http://15.165.31.148:5000/post";
     private static final String test_or_verify = "test";
     private ArrayList<Float> array_int = new ArrayList<>();
 
@@ -51,6 +54,7 @@ public class TestResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_result_pg);
+        //pgsBar = (ProgressBar) findViewById(R.id.pBar);
 
         barChart = (VerticalBarChart)findViewById(R.id.score_chart);
 
@@ -64,14 +68,21 @@ public class TestResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 scoreCalculation();
+              //  pgsBar.setVisibility(v.VISIBLE);
             }
         });
 
         Button show=findViewById(R.id.btn_score_show);
+
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setBarChart();
+                if(success){
+                    setBarChart();
+                }
+                else{
+                    Toast.makeText(TestResultActivity.this, "점수가 산정되지 않았습니다.\n 조금만 기다려주세요!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -130,7 +141,7 @@ public class TestResultActivity extends AppCompatActivity {
                 .build();
 
         Request req = new Request.Builder()
-                .url(BASE_URL + "post")
+                .url(BASE_URL.toString())
                 .post(formbody)
                 .build();
 
@@ -140,6 +151,7 @@ public class TestResultActivity extends AppCompatActivity {
             public void onResponse(@com.google.firebase.database.annotations.NotNull Call call, @com.google.firebase.database.annotations.NotNull Response response) throws IOException {
                 String responseBody = response.body().string();
                 System.out.println(responseBody);
+
                 String [] array = responseBody.split(" ");
                 for(int i=0; i<array.length; i++){
                     array_int.add(Float.parseFloat(array[i]));
@@ -151,6 +163,7 @@ public class TestResultActivity extends AppCompatActivity {
                     public void run()
                     {
                         Toast.makeText(TestResultActivity.this, "점수 산정 완료", Toast.LENGTH_SHORT).show();
+                        success=true;
                     }
                 }, 0);
 
